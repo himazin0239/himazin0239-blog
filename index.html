@@ -91,6 +91,32 @@
                         </td>
                     </tr>
                 </table>
+                <form
+                    action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
+                    target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
+                    <p><input name="entry.1039723739" placeholder="名前" value="名無し" required></p>
+                    <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
+                    <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400"
+                            id="wcheck" required></textarea></p>
+                    <input type="submit" id="submitbutton" value="送信">
+                </form>
+                <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
+                    style=display:none></iframe>
+
+                <script type="text/javascript">
+                    var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
+                    var regex = new RegExp(NGComments.join("|"));
+                    function test(wcheck) {
+                        if (wcheck.match(regex) != null) {
+                            alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
+                            return false;
+                        }
+                        document.getElementById("submitbutton").disabled = true;
+                        textareas = document.getElementsByTagName('textarea');
+                        inputs = document.getElementsByTagName('input');
+                        return submitted = !0;
+                    }
+                </script>
             </div>
             <div class="main-inner-icon">
                 <img src="./img/icon.png" width="250" class="main-inner-icon2">
@@ -114,31 +140,6 @@
                     </a>
                 </div>
             </div>
-            <form action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse" target="hidden_iframe"
-                method="post" onsubmit="return test(this.wcheck.value)">
-                <p><input name="entry.1039723739" placeholder="名前" value="名無し" required></p>
-                <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
-                <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400" id="wcheck"
-                        required></textarea></p>
-                <input type="submit" id="submitbutton" value="送信">
-            </form>
-            <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
-                style=display:none></iframe>
-
-            <script type="text/javascript">
-                var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
-                var regex = new RegExp(NGComments.join("|"));
-                function test(wcheck) {
-                    if (wcheck.match(regex) != null) {
-                        alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
-                        return false;
-                    }
-                    document.getElementById("submitbutton").disabled = true;
-                    textareas = document.getElementsByTagName('textarea');
-                    inputs = document.getElementsByTagName('input');
-                    return submitted = !0;
-                }
-            </script>
         </div>
     </main>
     <footer class="footer">
