@@ -118,6 +118,26 @@
                         return submitted = !0;
                     }
                 </script>
+                <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+                <div id="comments"></div>
+                <script>
+                    d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", function (error, data) {
+                        data.reverse();
+                        function replaceText(text) {
+                            return text
+                                .replace(/</g, "&lt;")
+                        }
+                        var text = "";
+                        for (var i = 0; i < data.length; i++) {
+                            var name = replaceText(data[i].Name);
+                            var mail = replaceText(data[i].Mail);
+                            var timestamp = replaceText(data[i].Timestamp);
+                            var comments = replaceText(data[i].Comments);
+                            text += i + 1 + " 名前: <a href=\"mailto:" + mail + "\">" + name + "</a> " + timestamp + "<pre>" + comments + "</pre>";
+                        }
+                        d3.select("#comments").html(text);
+                    });
+                </script>
             </div>
             <div class="main-inner-icon">
                 <img src="./img/icon.png" width="250" class="main-inner-icon2">
