@@ -133,7 +133,7 @@
                             var mail = replaceText(data[i].Mail);
                             var timestamp = replaceText(data[i].Timestamp);
                             var comments = replaceText(data[i].Comments);
-                            text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + "<pre>" + ")" + comments + "</pre>";
+                            text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")こｎ" + "<pre>" + comments + "</pre>";
                         }
                         d3.select("#comments").html(text);
                     });
