@@ -102,50 +102,112 @@
                 <h1>コメント欄</h1>
                 <form
                     action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
-                    target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
+                    target="hidden_iframe" method="post" onsubmit="return uploadAndSubmit(event)">
+
                     <p><input name="entry.1039723739" placeholder="名前" value="名無しの誰かさん(21歳)" required></p>
+
                     <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
+
                     <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400"
                             id="wcheck" required></textarea></p>
+
+                    <p><input type="file" id="imageInput" accept="image/*"></p>
+
+                    <input type="hidden" name="entry.1537184176" id="imageUrl">
+
                     <input type="submit" id="submitbutton" value="送信">
                 </form>
-                <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
-                    style=display:none></iframe>
 
-                <script type="text/javascript">
+                <iframe onload='if(submitted){window.location="";}' id="hidden_iframe" name="hidden_iframe"
+                    style="display:none"></iframe>
+
+                <script>
+                    var submitted = false;
+
                     var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
+
                     var regex = new RegExp(NGComments.join("|"));
-                    function test(wcheck) {
-                        if (wcheck.match(regex) != null) {
-                            alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
+
+                    function uploadAndSubmit(e) {
+                        e.preventDefault();
+
+                        var comment = document.getElementById("wcheck").value;
+
+                        if (comment.match(regex) != null) {
+                            alert("ERROR: コメントにNGワードが含まれています!");
                             return false;
                         }
-                        document.getElementById("submitbutton").disabled = true;
-                        textareas = document.getElementsByTagName('textarea');
-                        inputs = document.getElementsByTagName('input');
-                        return submitted = !0;
+
+                        var file = document.getElementById("imageInput").files[0];
+
+                        if (!file) {
+                            submitted = true;
+                            document.getElementById("submitbutton").disabled = true;
+                            e.target.submit();
+                            return true;
+                        }
+
+                        var formData = new FormData();
+                        formData.append("file", file);
+                        formData.append("upload_preset", "himazin0239 blog comments");
+
+                        fetch("https://api.cloudinary.com/v1_1/dsss4qlls/image/upload", {
+                            method: "POST",
+                            body: formData
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                document.getElementById("imageUrl").value = data.secure_url;
+                                submitted = true;
+                                document.getElementById("submitbutton").disabled = true;
+                                e.target.submit();
+                            })
+                            .catch(err => {
+                                alert("画像アップロード失敗");
+                            });
+
+                        return false;
                     }
                 </script>
+
                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
                 <div id="comments"></div>
+
                 <script>
-                    d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", function (error, data) {
+                    d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv", function (error, data) {
+
                         data.reverse();
+
                         function replaceText(text) {
+                            if (!text) return "";
                             return text
                                 .replace(/</g, "&lt;")
+                                .replace(/>/g, "&gt;");
                         }
+
                         var text = "";
+
                         for (var i = 0; i < data.length; i++) {
+
                             var name = replaceText(data[i].Name);
                             var mail = replaceText(data[i].Mail);
                             var timestamp = replaceText(data[i].Timestamp);
                             var comments = replaceText(data[i].Comments);
-                            text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
+                            var image = replaceText(data[i].Image);  // 列名に合わせる
+
+                            text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> の発言(" + timestamp + ")";
+                            text += "<pre>" + comments + "</pre>";
+
+                            if (image) {
+                                text += "<img src='" + image + "' width='200'><br>";
+                            }
                         }
+
                         d3.select("#comments").html(text);
                     });
                 </script>
+
             </div>
             <div class="main-inner-icon">
                 <img src="./img/icon.png" width="250" class="main-inner-icon2">
