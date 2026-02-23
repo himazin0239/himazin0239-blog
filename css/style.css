@@ -172,3 +172,8 @@ button .button-right {
 .footer-inner-inner {
     display: flex;
 }
+
+.footer-menu {
+    margin-left: 10px;
+    display: flex;
+}
