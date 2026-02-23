@@ -168,3 +168,7 @@ button .button-right {
 .footer-inner {
     margin-left: 50px;
 }
+
+.footer-inner-inner {
+    display: flex;
+}
