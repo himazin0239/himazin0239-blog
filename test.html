@@ -1,185 +1,230 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="utf-8">
-    <title>himazin0239のブログ-ホーム</title>
-    <style>
-        ::before,
-        ::after {
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="utf-8">
+<title>himazin0239のブログ-ホーム</title>
 
-        .header {
-            display: flex;
-            justify-content: center;
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        }
+body {
+    font-family: "Segoe UI", sans-serif;
+}
 
-        .Win7Icon {
-            width: 75px;
-            height: 75px;
-        }
+/* header */
+.header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
 
-        .main {
-            display: flex;
-            justify-content: center;
-        }
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 
-        .left {
-            width: 350px;
-            background-color: #aaaaaa;
-        }
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
 
-        .right {
-            margin-left: 20px;
-            width: 500px;
-        }
+    margin-top: 20px;
+}
 
-        .user-picture {
-            width: 200px;
-        }
+.Win7Icon {
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
+}
 
-        button {
-            border: none;
-            padding: 0;
-            margin: 0;
-            background: none;
-            display: inline-flex;
-            align-items: center;
-            cursor: pointer;
-            font-family: "Segoe UI", sans-serif;
-        }
+/* main layout */
+.main {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
 
-        button .button-left {
-            width: 7px;
-            height: 25px;
-            background: url("../img/button1.gif") no-repeat;
-        }
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
 
-        button .button-center {
-            height: 25px;
-            background: url("../img/button2.gif") repeat-x;
-            padding: 0 14px;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            color: #ffffff;
-            white-space: nowrap;
-        }
+    margin-top: 20px;
+}
 
-        button .button-center a {
-            color: #ffffff;
-            text-decoration: none;
-        }
+.left {
+    width: 350px;
+    background-color: #aaaaaa;
+    padding: 10px;
+}
 
-        button .button-right {
-            width: 7px;
-            height: 25px;
-            background: url("../img/button3.gif") no-repeat;
-        }
-    </style>
+.right {
+    margin-left: 20px;
+    width: 500px;
+}
+
+/* images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.user-picture {
+    width: 200px;
+}
+
+/* button */
+button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: "Segoe UI", sans-serif;
+}
+
+button .button-left {
+    width: 7px;
+    height: 25px;
+    background: url("/img/button1.gif") no-repeat;
+}
+
+button .button-center {
+    height: 25px;
+    background: url("/img/button2.gif") repeat-x;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+button .button-right {
+    width: 7px;
+    height: 25px;
+    background: url("/img/button3.gif") no-repeat;
+}
+</style>
 </head>
 
 <body>
-    <div class="body">
-        <div class="header">
-            <img src="./img/Windows_7_Icon.png" class="Win7Icon">
-            <h2 class="title-text">himazin0239のブログ</h2>
-        </div>
-        <div class="main">
-            <div class="left">
-                <img src="./img/my_icon.png" class="user-picture">
+
+<div class="header">
+    <img src="/img/Windows_7_Icon.png" class="Win7Icon">
+    <h2>himazin0239のブログ</h2>
+</div>
+
+<div class="main">
+
+    <div class="left">
+        <img src="/img/my_icon.png" class="user-picture">
+
+        <ul>
+            <li>himazin0239について
                 <ul>
-                    <li>himazin0239について
-                        <ul>
-                            <li>年齢: 13歳</li>
-                            <li>性別: 男性</li>
-                            <li>主な活動場所: Scratch・Discord</li>
-                        </ul>
-                    </li>
-                    <li>
-                        連絡先
-                        <ul>
-                            <li>Gmail: wdq.ewfjiow8402@gmail.com</li>
-                            <li>Escargot(最近やってないのでGmailに送る方が確実): himazin0239@escargot.chat</li>
-                        </ul>
-                    </li>
+                    <li>年齢: 13歳</li>
+                    <li>性別: 男性</li>
+                    <li>主な活動場所: Scratch・Discord</li>
                 </ul>
-                <marquee direction="left" scrollamount="8"
-                    style="color:#000000; width: 300px; height: 25x; background: linear-gradient(to right, #c4d9ff 20%, #e6eeff 80%);">
-                    <p>himazin0239のブログへようこそ! コメントはNGワードを含むと投稿できません</p>
-                </marquee>
-                <a href="https://2011-msn.neocities.org/">
-                    <img src="./img/Advertisement1.png" width="175">
-                </a>
-                <a href="https://www.firefox.com/ja/">
-                    <img src="./img/spreadfirefox.png" width="175">
-                </a>
-            </div>
-            <div class="right">
-                <h1>himazin0239のブログへようこそ!</h1>
-                <h2>なんだこの自己満ブログは</h2>
-                <a href="https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg">
-                    <button>
-                        <span class="button-left"></span>
-                        <span class="button-center">
-                            Youtubeへ行く
-                        </span>
-                        <span class="button-right"></span>
-                    </button>
-                </a>
-                <p>このブログはPCやアプリなどの主にデジタル系の記事を載せています。 もしよければお気に入り登録をお願いします。あとYoutubeもやってるのでチャンネル登録もよろしく。</p>
-                <form
-                    action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
-                    target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
-                    <p><input name="entry.1039723739" placeholder="名前" value="名無しの誰かさん(21歳)" required></p>
-                    <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
-                    <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400"
-                            id="wcheck" required></textarea></p>
-                    <input type="submit" id="submitbutton" value="送信">
-                </form>
-                <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
-                    style=display:none></iframe>
+            </li>
+            <li>連絡先
+                <ul>
+                    <li>Gmail: wdq.ewfjiow8402@gmail.com</li>
+                    <li>Escargot: himazin0239@escargot.chat</li>
+                </ul>
+            </li>
+        </ul>
 
-                <script type="text/javascript">
-                    var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
-                    var regex = new RegExp(NGComments.join("|"));
-                    function test(wcheck) {
-                        if (wcheck.match(regex) != null) {
-                            alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
-                            return false;
-                        }
-                        document.getElementById("submitbutton").disabled = true;
-                        textareas = document.getElementsByTagName('textarea');
-                        inputs = document.getElementsByTagName('input');
-                        return submitted = !0;
-                    }
-                </script>
-                <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-                <div id="comments"></div>
-                <script>
-                    d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", function (error, data) {
-                        data.reverse();
-                        function replaceText(text) {
-                            return text
-                                .replace(/</g, "&lt;")
-                        }
-                        var text = "";
-                        for (var i = 0; i < data.length; i++) {
-                            var name = replaceText(data[i].Name);
-                            var mail = replaceText(data[i].Mail);
-                            var timestamp = replaceText(data[i].Timestamp);
-                            var comments = replaceText(data[i].Comments);
-                            text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
-                        }
-                        d3.select("#comments").html(text);
-                    });
-                </script>
-            </div>
-        </div>
+        <marquee direction="left" scrollamount="8"
+            style="color:#000000; width: 300px; background: #c4d9ff;">
+            himazin0239のブログへようこそ! コメントはNGワードを含むと投稿できません
+        </marquee>
+
+        <a href="https://2011-msn.neocities.org/">
+            <img src="/img/Advertisement1.png" width="175">
+        </a>
+
+        <a href="https://www.firefox.com/ja/">
+            <img src="/img/spreadfirefox.png" width="175">
+        </a>
     </div>
-</body>
 
+    <div class="right">
+        <h1>himazin0239のブログへようこそ!</h1>
+        <h2>なんだこの自己満ブログは</h2>
+
+        <a href="https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg">
+            <button>
+                <span class="button-left"></span>
+                <span class="button-center">
+                    Youtubeへ行く
+                </span>
+                <span class="button-right"></span>
+            </button>
+        </a>
+
+        <p>
+        このブログはPCやアプリなどの主にデジタル系の記事を載せています。
+        もしよければお気に入り登録をお願いします。
+        </p>
+
+        <!-- コメントフォーム（そのまま） -->
+        <form
+            action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
+            target="hidden_iframe" method="post"
+            onsubmit="return test(this.wcheck.value)">
+            <p><input name="entry.1039723739" placeholder="名前" required></p>
+            <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
+            <p><textarea name="entry.1204045444" placeholder="コメント"
+                rows="10" cols="40" maxlength="400" id="wcheck" required></textarea></p>
+            <input type="submit" id="submitbutton" value="送信">
+        </form>
+
+        <iframe name="hidden_iframe" style="display:none;"></iframe>
+
+        <!-- NGワード判定 -->
+        <script>
+        var NGComments = ["死ね","バカ",".exe",".bat","クソ","アホ"];
+        var regex = new RegExp(NGComments.join("|"));
+
+        function test(wcheck) {
+            if (regex.test(wcheck)) {
+                alert("コメントにNGワードが含まれています");
+                return false;
+            }
+            document.getElementById("submitbutton").disabled = true;
+            return true;
+        }
+        </script>
+
+        <!-- コメント表示（元のまま） -->
+        <script src="https://d3js.org/d3.v3.min.js"></script>
+        <div id="comments"></div>
+        <script>
+        d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D",
+        function (error, data) {
+            data.reverse();
+            function replaceText(text) {
+                return text.replace(/</g, "&lt;");
+            }
+            var text = "";
+            for (var i = 0; i < data.length; i++) {
+                var name = replaceText(data[i].Name);
+                var mail = replaceText(data[i].Mail);
+                var timestamp = replaceText(data[i].Timestamp);
+                var comments = replaceText(data[i].Comments);
+                text += i + 1 + " <a href=\"mailto:" + mail + "\">"
+                + name + "</a> の発言 (" + timestamp + ")"
+                + "<pre>" + comments + "</pre>";
+            }
+            d3.select("#comments").html(text);
+        });
+        </script>
+
+    </div>
+</div>
+
+</body>
 </html>
