@@ -210,56 +210,54 @@
                 </tr>
             </table>
 
-            <!-- コメントフォーム（そのまま） -->
-            <form
-                action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
-                target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
-                <p><input name="entry.1039723739" placeholder="名前" required></p>
-                <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
-                <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400" id="wcheck"
-                        required></textarea></p>
-                <input type="submit" id="submitbutton" value="送信">
-            </form>
+            <div id="comments">読み込み中...</div>
 
-            <iframe name="hidden_iframe" style="display:none;"></iframe>
-
-            <!-- NGワード判定 -->
             <script>
-                var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ"];
-                var regex = new RegExp(NGComments.join("|"));
-
-                function test(wcheck) {
-                    if (regex.test(wcheck)) {
-                        alert("コメントにNGワードが含まれています");
-                        return false;
-                    }
-                    document.getElementById("submitbutton").disabled = true;
-                    return true;
+                function escapeHtml(text) {
+                    if (!text) return "";
+                    return text
+                        .replace(/&/g, "&amp;")
+                        .replace(/</g, "&lt;")
+                        .replace(/>/g, "&gt;");
                 }
-            </script>
 
-            <!-- コメント表示（元のまま） -->
-            <script src="https://d3js.org/d3.v3.min.js"></script>
-            <div id="comments"></div>
-            <script>
-                d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D",
-                    function (error, data) {
-                        data.reverse();
-                        function replaceText(text) {
-                            return text.replace(/</g, "&lt;");
+                function loadComments() {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("GET", "https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", true);
+
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                var lines = xhr.responseText.split("\n");
+                                var html = "";
+
+                                for (var i = lines.length - 1; i >= 0; i--) {
+                                    var cols = lines[i].split(",");
+
+                                    if (cols.length >= 4) {
+                                        var timestamp = escapeHtml(cols[0]);
+                                        var name = escapeHtml(cols[1]);
+                                        var mail = escapeHtml(cols[2]);
+                                        var comment = escapeHtml(cols[3]);
+
+                                        html += (lines.length - i) + " ";
+                                        html += "<a href=\"mailto:" + mail + "\">" + name + "</a>";
+                                        html += " の発言 (" + timestamp + ")";
+                                        html += "<pre>" + comment + "</pre>";
+                                    }
+                                }
+
+                                document.getElementById("comments").innerHTML = html;
+                            } else {
+                                document.getElementById("comments").innerHTML = "コメントの読み込みに失敗しました";
+                            }
                         }
-                        var text = "";
-                        for (var i = 0; i < data.length; i++) {
-                            var name = replaceText(data[i].Name);
-                            var mail = replaceText(data[i].Mail);
-                            var timestamp = replaceText(data[i].Timestamp);
-                            var comments = replaceText(data[i].Comments);
-                            text += i + 1 + " <a href=\"mailto:" + mail + "\">"
-                                + name + "</a> の発言 (" + timestamp + ")"
-                                + "<pre>" + comments + "</pre>";
-                        }
-                        d3.select("#comments").html(text);
-                    });
+                    };
+
+                    xhr.send(null);
+                }
+
+                loadComments();
             </script>
 
         </div>
