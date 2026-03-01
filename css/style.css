@@ -197,5 +197,13 @@ button .button-right {
 
 .mail-text {
     margin-left: 10px;
-    margin-top: -0.5px;
+    margin-top: -0px;
+}
+
+.syousai {
+    display: flex;
+}
+
+.user-picture {
+    width: 200px;
 }
