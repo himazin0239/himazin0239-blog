@@ -186,3 +186,16 @@ button .button-right {
     width: 120px;
     height: 40px;
 }
+
+.mail {
+    display: flex;
+}
+.mail-image {
+    width: 24px;
+    height: 24px;
+}
+
+.mail-text {
+    margin-left: 10px;
+    margin-top: -0.5px;
+}
