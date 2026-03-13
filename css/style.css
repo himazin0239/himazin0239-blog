@@ -105,7 +105,7 @@ button .button-right {
     margin-left: 2px;
     max-width: 959px;
     max-height: 249px;
-    background: linear-gradient(to right, #3fd8cb, #3da8a3, #003436);
+    background: linear-gradient(to right, #00eeda, #4ed4ce, #008a8f);
     display: flex;
 }
 
