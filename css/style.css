@@ -7,9 +7,13 @@
 }
 
 body {
-    background-color: #daf3fd;
+    background-image: url(../img/wallpaper.jpg);
+    background-size: 100%;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
+    display: flex;
+    justify-content: center;
     align-items: center;
     font-family: "Segoe UI", Meiryo, sans-serif;
 }
@@ -98,27 +102,27 @@ button .button-right {
 }
 
 .main-about {
-    margin-left: 14px;
-    max-width: 959.2px;
+    margin-left: 2px;
+    max-width: 959px;
     max-height: 249px;
-    background: linear-gradient(to right, #D5D83F, #5FA83D, #003603);
+    background: linear-gradient(to right, #3fd8cb, #3da8a3, #003436);
     display: flex;
 }
 
 .main-inner {
-    margin-left: 50px;
+    margin-left: 52px;
     display: flex;
 }
 
 .main-inner-main {
-    width: 500px;
+    width: 448px;
 }
 
 .main-inner-right {
-    background: linear-gradient(to bottom, #e3edff 20%, #ffffff 80%);
+    background: linear-gradient(to bottom, #e3edff 20%, #effff0 80%, #ffffff 100%);
     max-width: 202.5px;
     width: 100%;
-    margin-left: -40px;
+    /*margin-left: -2px;*/
 }
 
 .main-inner-right-main {
@@ -126,11 +130,11 @@ button .button-right {
 }
 
 .main-inner-right-title {
-    color: #F58220;
+    color: #00b60f;
 }
 
 .main-inner-main h1 {
-    color: #F58220;
+    color: #00b60f;
 }
 
 .main-inner-icon2 {
@@ -153,11 +157,11 @@ button .button-right {
 
 .kiji a {
     text-decoration: none;
-    color: #0066CC;
+    color: #0092cc;
 }
 
 .kiji a:hover {
-    color: #0058B0;
+    color: #0061b0;
 }
 
 .footer {
@@ -190,6 +194,7 @@ button .button-right {
 .mail {
     display: flex;
 }
+
 .mail-image {
     width: 24px;
     height: 24px;
