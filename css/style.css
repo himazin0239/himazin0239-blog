@@ -207,3 +207,7 @@ button .button-right {
 .user-picture {
     width: 200px;
 }
+
+.test {
+    display: none;
+}
