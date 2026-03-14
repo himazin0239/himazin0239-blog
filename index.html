@@ -199,7 +199,188 @@
             </div>
             <div class="main-inner-right">
                 <div class="main-inner-right-main">
-                    <p class="main-inner-right-title">お知らせ</p>
+                    <p class="main-inner-right-title">
+                        <b>再生中の曲</b>
+                    </p>
+                    <div class="dvd">
+
+                        <div class="player">
+
+                            <div class="cover">
+                                <img id="cover" src="./img/dvd.png">
+                            </div>
+
+                            <p id="title">曲タイトル</p>
+
+                            <input type="range" id="progress" value="0">
+
+                            <div class="controls">
+                                <img id="prev" src="./img/back.png">
+                                <img id="play" src="./img/play.png">
+                                <img id="next" src="./img/next.png">
+                            </div>
+
+                        </div>
+
+                        <!-- 見えないYouTubeプレイヤー -->
+                        <div id="ytplayer" style="width:0;height:0;overflow:hidden;"></div>
+
+                    </div>
+
+
+                    <script src="https://www.youtube.com/iframe_api"></script>
+
+                    <script>
+
+                        let player
+
+                        /* 曲リスト */
+                        const songs = [
+                            {
+                                title: "yume 2kki - lotus waters",
+                                video: "gQh5_HRXag4",
+                                cover: "./img/dvd.png"
+                            },
+                            {
+                                title: "Takeshi Abo - LEASE",
+                                video: "XflbX6GiRzI",
+                                cover: "./img/dvd.png"
+                            },
+                            {
+                                title: "Rick Astley - Never Gonna Give You Up",
+                                video: "xxw8DnChUhs",
+                                cover: "./img/dvd.png"
+                            }
+                        ]
+
+                        let index = 0
+                        let playing = false
+
+                        const playBtn = document.getElementById("play")
+                        const prevBtn = document.getElementById("prev")
+                        const nextBtn = document.getElementById("next")
+                        const progress = document.getElementById("progress")
+                        const title = document.getElementById("title")
+                        const cover = document.getElementById("cover")
+
+                        const playImage = "./img/play.png"
+                        const pauseImage = "./img/stop.png"
+
+                        /* YouTubeプレイヤー生成 */
+                        function onYouTubeIframeAPIReady() {
+
+                            player = new YT.Player('ytplayer', {
+                                height: '0',
+                                width: '0',
+                                videoId: songs[0].video,
+                                playerVars: {
+                                    autoplay: 0,
+                                    controls: 0
+                                }
+                            })
+
+                            title.textContent = songs[0].title
+
+                        }
+
+                        /* 曲ロード */
+                        function loadSong(i) {
+
+                            player.loadVideoById(songs[i].video)
+                            title.textContent = songs[i].title
+                            cover.src = songs[i].cover
+
+                        }
+
+                        /* 再生ボタン */
+                        playBtn.onclick = function () {
+
+                            if (!playing) {
+
+                                player.playVideo()
+                                cover.classList.add("spin")
+                                playBtn.src = pauseImage
+                                playing = true
+
+                            } else {
+
+                                player.pauseVideo()
+                                cover.classList.remove("spin")
+                                playBtn.src = playImage
+                                playing = false
+
+                            }
+
+                        }
+
+                        /* 次 */
+                        nextBtn.onclick = function () {
+
+                            index++
+
+                            if (index >= songs.length) {
+                                index = 0
+                            }
+
+                            loadSong(index)
+
+                            player.playVideo()
+
+                            cover.classList.add("spin")
+                            playBtn.src = pauseImage
+                            playing = true
+
+                        }
+
+                        /* 前 */
+                        prevBtn.onclick = function () {
+
+                            index--
+
+                            if (index < 0) {
+                                index = songs.length - 1
+                            }
+
+                            loadSong(index)
+
+                            player.playVideo()
+
+                            cover.classList.add("spin")
+                            playBtn.src = pauseImage
+                            playing = true
+
+                        }
+
+                        /* 再生バー更新 */
+                        setInterval(function () {
+
+                            if (player && player.getDuration) {
+
+                                let duration = player.getDuration()
+                                let current = player.getCurrentTime()
+
+                                if (duration) {
+
+                                    progress.value = (current / duration) * 100
+
+                                }
+
+                            }
+
+                        }, 500)
+
+                        /* 再生バー操作 */
+                        progress.oninput = function () {
+
+                            let duration = player.getDuration()
+                            player.seekTo((progress.value / 100) * duration, true)
+
+                        }
+
+                    </script>
+                    <p class="main-inner-right-title">
+                        <b>お知らせ</b>
+                    </p>
                     <marquee direction="left" scrollamount="8"
                         style="color:#000000; width: 160px; height: 50px; background: linear-gradient(to right, #c4d9ff 20%, #e6eeff 80%); border: 1px solid #000000;">
                         <p>himazin0239のブログへようこそ! コメントはNGワードを含むと投稿できません</p>

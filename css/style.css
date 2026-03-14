@@ -216,3 +216,50 @@ button .button-right {
 .test {
     display: none;
 }
+
+.dvd {
+    font-family: sans-serif;
+    color: #1cacff;
+    text-align: center;
+}
+
+.player {
+    width: calc(100% - 15px);
+    border-radius: 10px;
+}
+
+.cover {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+}
+
+.cover img {
+    width: 100%;
+    border-radius: 50%;
+}
+
+.spin {
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#progress {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.controls img {
+    width: 40px;
+    cursor: pointer;
+    margin: 5px;
+}

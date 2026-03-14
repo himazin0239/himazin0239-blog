@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Music Player</title>
+
+<style>
+body{
+    font-family:sans-serif;
+    color:white;
+    text-align:center;
+}
+
+.player{
+    width:400px;
+    margin:50px auto;
+    padding:20px;
+    border-radius:10px;
+}
+
+.cover{
+    width:150px;
+    height:150px;
+    margin:auto;
+}
+
+.cover img{
+    width:100%;
+    border-radius:50%;
+}
+
+/* 回転 */
+.spin{
+    animation:spin 4s linear infinite;
+}
+
+@keyframes spin{
+    from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+/* 再生バー */
+#progress{
+    width:100%;
+    margin:15px 0;
+}
+
+/* ボタン */
+.controls img{
+    width:50px;
+    cursor:pointer;
+    margin:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="player">
+
+<div class="cover">
+<img id="cover" src="./img/dvd.png">
+</div>
+
+<p id="title">曲タイトル</p>
+
+<input type="range" id="progress" value="0">
+
+<div class="controls">
+
+<img id="prev" src="./img/back.png">
+<img id="play" src="./img/play.png">
+<img id="next" src="./img/next.png">
+
+</div>
+
+<audio id="audio"></audio>
+
+</div>
+
+<script>
+
+const audio = document.getElementById("audio")
+const playBtn = document.getElementById("play")
+const prevBtn = document.getElementById("prev")
+const nextBtn = document.getElementById("next")
+const progress = document.getElementById("progress")
+const title = document.getElementById("title")
+const cover = document.getElementById("cover")
+
+/* ボタン画像 */
+const playImage = "./img/play.png"
+const pauseImage = "./img/stop.png"
+
+/* 曲リスト */
+const songs = [
+{
+title:"曲1",
+file:"./sound/01 トラック 1.mp3",
+cover:"./img/dvd.png"
+},
+{
+title:"曲2",
+file:"music2.mp3",
+cover:"./img/dvd.png"
+},
+{
+title:"曲3",
+file:"music3.mp3",
+cover:"./img/dvd.png"
+}
+]
+
+let index = 0
+
+function loadSong(i){
+
+audio.src = songs[i].file
+title.textContent = songs[i].title
+cover.src = songs[i].cover
+
+}
+
+loadSong(index)
+
+/* 再生ボタン */
+playBtn.onclick = function(){
+
+if(audio.paused){
+
+audio.play()
+cover.classList.add("spin")
+playBtn.src = pauseImage
+
+}else{
+
+audio.pause()
+cover.classList.remove("spin")
+playBtn.src = playImage
+
+}
+
+}
+
+/* 次 */
+nextBtn.onclick = function(){
+
+index++
+
+if(index >= songs.length){
+index = 0
+}
+
+loadSong(index)
+audio.play()
+cover.classList.add("spin")
+playBtn.src = pauseImage
+
+}
+
+/* 前 */
+prevBtn.onclick = function(){
+
+index--
+
+if(index < 0){
+index = songs.length-1
+}
+
+loadSong(index)
+audio.play()
+cover.classList.add("spin")
+playBtn.src = pauseImage
+
+}
+
+/* 再生バー更新 */
+audio.ontimeupdate = function(){
+
+progress.value = (audio.currentTime / audio.duration) * 100
+
+}
+
+/* 再生バー操作 */
+progress.oninput = function(){
+
+audio.currentTime = (progress.value / 100) * audio.duration
+
+}
+
+/* 曲終了 */
+audio.onended = function(){
+
+cover.classList.remove("spin")
+playBtn.src = playImage
+nextBtn.click()
+
+}
+
+</script>
+
+</body>
+</html>
