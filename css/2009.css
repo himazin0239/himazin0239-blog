@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Tahoma, "MS UI Gothic", sans-serif;
+    background-color: rgb(93, 122, 164);
+    background-image: url(../img/wallpaper.jpg);
+    background-repeat: no-repeat;
+    background-position: bottom center;
+}
+
+.top-banner {
+    background-image: url(../img/header.png);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 150px;
+    height: 45px;
+    color: #ffffff;
+    font-size: 30px;
+}
+
+.top-banner-img {
+    margin-left: 10px;
+}
+
+.top-banner-img img {
+    width: 280px;
+}
+
+#main-left {
+    background-color: #e6e6e6;
+    width: 300px;
+    float: left;
+}
+
+#main-right {
+    float: left;
+    width: 700px;
+    margin-left: 20px;
+}
+
+#main-right a {
+    color: #00ff15;
+}
+
+#main {
+    overflow: hidden;
+}
+
+.main-left-grid {
+    background-color: #ffffff;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.main-left-title {
+    font-size: 25px;
+}
+
+#main-left-grid-myicon {
+    width: 150px;
+}
+
+#main-left-grid-syousai {
+    margin-left: 30px;
+}
+
+#main-left-grid-syousai ul {
+    margin-left: 30px;
+}
+
+.mail {
+    overflow: hidden;
+}
+
+.mail-image {
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+
+.menu {
+    background-image: url(../img/menu-background.png);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 65px;
+    height: 33px;
+    overflow: hidden;
+}
+
+.menu-text {
+    font-size: 16px;
+    float: left;
+    margin-left: 16px;
+    margin-top: 6px;
+}
+
+button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: Tahoma, "MS UI Gothic", sans-serif;
+}
+
+button .button-left {
+    width: 7px;
+    height: 25px;
+    background: url("../img/button1.gif") no-repeat;
+}
+
+button .button-center {
+    height: 25px;
+    background: url("../img/button2.gif") repeat-x;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+button .button-center a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+button .button-right {
+    width: 7px;
+    height: 25px;
+    background: url("../img/button3.gif") no-repeat;
+}
+
+.welcome-box {
+    position: relative;
+    min-height: 320px;
+}
+
+.welcome-text {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+#minecraft {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 180px;
+    margin-top: 20px;
+}
+
+.news-area {
+    margin-top: -240px;
+    overflow: hidden;
+}
+
+.news {
+    float: left;
+    width: 220px;
+    margin-right: 15px;
+}
