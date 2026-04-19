@@ -167,30 +167,44 @@
                 </div>
 
                 <script>
-                    // ユーザー情報 + フォロワー数（最強・軽い）
+                    // ユーザー情報
                     fetch("/api/user")
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById("icon").src = data.profile.images["90x90"];
-                        document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
-                        document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
-                        document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
-                        document.getElementById("status").textContent = data.profile.status;
-                        document.getElementById("bio").textContent = data.profile.bio;
-                    
-                        // ⭐ フォロワー数（ここ追加）
-                        if (data.statistics && data.statistics.followers !== undefined) {
-                            document.getElementById("followers").innerHTML =
-                                "<b>フォロワー:</b> " + data.statistics.followers + "人";
-                        } else {
-                            document.getElementById("followers").innerHTML =
-                                "<b>フォロワー:</b> 取得できません";
+                        .then(res => res.json())
+                        .then(data => {
+                            document.getElementById("icon").src = data.profile.images["90x90"];
+                            document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
+                            document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
+                            document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
+                            document.getElementById("status").textContent = data.profile.status;
+                            document.getElementById("bio").textContent = data.profile.bio;
+                        });
+
+                    // フォロワー数（完全取得）
+                    async function getFollowersCount() {
+                        let total = 0;
+                        let offset = 0;
+                        const limit = 40;
+
+                        while (true) {
+                            const res = await fetch(`/api/followers?offset=${offset}`);
+                            const data = await res.json();
+
+                            total += data.length;
+
+                            if (data.length < limit) break; // 最後のページ
+
+                            offset += limit;
                         }
-                    })
-                    .catch(err => {
-                        console.error(err);
+
+                        return total;
+                    }
+
+                    // 表示
+                    getFollowersCount().then(count => {
+                        document.getElementById("followers").innerHTML =
+                            "<b>フォロワー:</b> " + count + "人";
                     });
-                    </script>
+                </script>
             </div>
             <div class="main-left-grid">
                 <p class="main-left-title">
