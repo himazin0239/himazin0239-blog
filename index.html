@@ -82,6 +82,29 @@
                 <p>です</p>
             </div>
             <br>
+            <h2 id="username"></h2>
+            <img id="icon" width="90">
+            <div id="joined"></div>
+            <div id="country"></div>
+
+            <pre id="status"></pre>
+            <pre id="bio"></pre>
+
+            <script>
+                // ユーザー情報
+                fetch("./api/user")
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById("icon").src = data.profile.images["90x90"];
+                        document.getElementById("username").textContent = data.username;
+                        document.getElementById("joined").textContent = "参加日: " + data.history.joined;
+                        document.getElementById("country").textContent = "国: " + data.profile.country;
+                        document.getElementById("status").textContent = data.profile.status;
+                        document.getElementById("bio").textContent = data.profile.bio;
+                    });
+
+            </script>
+            <br>
             <div class="main-left-grid">
                 <p class="main-left-title">
                     <b>俺について</b>
