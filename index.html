@@ -169,42 +169,44 @@
                 <script>
                     // ユーザー情報
                     fetch("/api/user")
-                        .then(res => res.json())
-                        .then(data => {
-                            document.getElementById("icon").src = data.profile.images["90x90"];
-                            document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
-                            document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
-                            document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
-                            document.getElementById("status").textContent = data.profile.status;
-                            document.getElementById("bio").textContent = data.profile.bio;
-                        });
-
-                    // フォロワー数（完全取得）
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById("icon").src = data.profile.images["90x90"];
+                        document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
+                        document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
+                        document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
+                        document.getElementById("status").textContent = data.profile.status;
+                        document.getElementById("bio").textContent = data.profile.bio;
+                    });
+                    
+                    // フォロワー数（重複除去版）
                     async function getFollowersCount() {
-                        let total = 0;
                         let offset = 0;
                         const limit = 40;
-
+                        let ids = new Set(); // ←ここ重要
+                    
                         while (true) {
                             const res = await fetch(`/api/followers?offset=${offset}`);
                             const data = await res.json();
-
-                            total += data.length;
-
-                            if (data.length < limit) break; // 最後のページ
-
+                    
+                            data.forEach(user => {
+                                ids.add(user.id); // ←IDで管理
+                            });
+                    
+                            if (data.length < limit) break;
+                    
                             offset += limit;
                         }
-
-                        return total;
+                    
+                        return ids.size; // ←重複除去後の数
                     }
-
+                    
                     // 表示
                     getFollowersCount().then(count => {
                         document.getElementById("followers").innerHTML =
                             "<b>フォロワー:</b> " + count + "人";
                     });
-                </script>
+                    </script>
             </div>
             <div class="main-left-grid">
                 <p class="main-left-title">
