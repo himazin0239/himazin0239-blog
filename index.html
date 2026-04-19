@@ -82,28 +82,105 @@
                 <p>です</p>
             </div>
             <br>
-            <h2 id="username"></h2>
-            <img id="icon" width="90">
-            <div id="joined"></div>
-            <div id="country"></div>
+            <div class="main-left-grid">
+                <style>
+                    .scratch-container {
+                        width: 700px;
+                        /* ← 100%pxはバグるから修正 */
+                        margin: 20px auto;
+                        background: white;
+                        border: 2px solid #3a6ea5;
+                    }
 
-            <pre id="status"></pre>
-            <pre id="bio"></pre>
+                    .scratch-header {
+                        background: #3a6ea5;
+                        color: white;
+                        padding: 5px;
+                        font-weight: bold;
+                    }
 
-            <script>
-                // ユーザー情報
-                fetch("./api/user")
-                    .then(res => res.json())
-                    .then(data => {
-                        document.getElementById("icon").src = data.profile.images["90x90"];
-                        document.getElementById("username").textContent = data.username;
-                        document.getElementById("joined").textContent = "参加日: " + data.history.joined;
-                        document.getElementById("country").textContent = "国: " + data.profile.country;
-                        document.getElementById("status").textContent = data.profile.status;
-                        document.getElementById("bio").textContent = data.profile.bio;
-                    });
+                    .scratch-content {
+                        padding: 10px;
+                    }
 
-            </script>
+                    .scratch-profile-img {
+                        float: left;
+                        margin-right: 10px;
+                        border: 1px solid #aaa;
+                    }
+
+                    .scratch-box {
+                        border: 1px solid #aaa;
+                        margin-top: 10px;
+                    }
+
+                    .scratch-box-title {
+                        background: #eeeeee;
+                        padding: 3px;
+                        font-weight: bold;
+                    }
+
+                    .scratch-box-content {
+                        padding: 5px;
+                        white-space: pre-line;
+                    }
+
+                    .scratch-footer {
+                        font-size: 12px;
+                        text-align: center;
+                        padding: 5px;
+                        color: #666;
+                    }
+                </style>
+
+                <div class="scratch-container">
+
+                    <div class="scratch-header">
+                        Scratchユーザー情報
+                    </div>
+
+                    <div class="scratch-content">
+
+                        <img id="icon" class="scratch-profile-img" width="90">
+
+                        <div id="username"></div>
+                        <div id="joined"></div>
+                        <div id="country"></div>
+
+                        <div style="clear:both;"></div>
+
+                        <div class="scratch-box">
+                            <div class="scratch-box-title">ステータス</div>
+                            <div id="status" class="scratch-box-content"></div>
+                        </div>
+
+                        <div class="scratch-box">
+                            <div class="scratch-box-title">自己紹介</div>
+                            <div id="bio" class="scratch-box-content"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="scratch-footer">
+                        Scratch Viewer
+                    </div>
+
+                </div>
+
+                <script>
+                    // ユーザー情報
+                    fetch("/api/user")
+                        .then(res => res.json())
+                        .then(data => {
+                            document.getElementById("icon").src = data.profile.images["90x90"];
+                            document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
+                            document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
+                            document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
+                            document.getElementById("status").textContent = data.profile.status;
+                            document.getElementById("bio").textContent = data.profile.bio;
+                        });
+                </script>
+            </div>
             <br>
             <div class="main-left-grid">
                 <p class="main-left-title">
