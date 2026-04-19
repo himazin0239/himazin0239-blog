@@ -178,34 +178,6 @@
                         document.getElementById("status").textContent = data.profile.status;
                         document.getElementById("bio").textContent = data.profile.bio;
                     });
-                    
-                    // フォロワー数（重複除去版）
-                    async function getFollowersCount() {
-                        let offset = 0;
-                        const limit = 40;
-                        let ids = new Set(); // ←ここ重要
-                    
-                        while (true) {
-                            const res = await fetch(`/api/followers?offset=${offset}`);
-                            const data = await res.json();
-                    
-                            data.forEach(user => {
-                                ids.add(user.id); // ←IDで管理
-                            });
-                    
-                            if (data.length < limit) break;
-                    
-                            offset += limit;
-                        }
-                    
-                        return ids.size; // ←重複除去後の数
-                    }
-                    
-                    // 表示
-                    getFollowersCount().then(count => {
-                        document.getElementById("followers").innerHTML =
-                            "<b>フォロワー:</b> " + count + "人";
-                    });
                     </script>
             </div>
             <div class="main-left-grid">
