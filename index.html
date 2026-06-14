@@ -354,12 +354,28 @@
                 </a>
             </table>
             <h1>コメント欄</h1>
+            <style>
+                #comments {
+                    background-image: url(../img/notebook_textura_by_kikarr_d26gui8.jpg);
+                    background-repeat: repeat-y;
+                    padding-left: 30px;
+                }
+
+                #comments a {
+                    color: rgb(47, 0, 255);
+                }
+
+                #comments pre {
+                    line-height: 1.6;
+                    white-space: pre-wrap;
+                }
+            </style>
             <form
                 action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
                 target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
                 <p><input name="entry.1039723739" placeholder="名前" value="名無しの誰かさん(21歳)" required></p>
                 <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
-                <p><textarea name="entry.1204045444" placeholder="コメント" rows="10" cols="40" maxlength="400" id="wcheck"
+                <p><textarea name="entry.1204045444" placeholder="コメント" rows="2" cols="40" maxlength="400" id="wcheck"
                         required></textarea></p>
                 <input type="submit" id="submitbutton" value="送信">
             </form>
@@ -395,7 +411,7 @@
                         var mail = replaceText(data[i].Mail);
                         var timestamp = replaceText(data[i].Timestamp);
                         var comments = replaceText(data[i].Comments);
-                        text += i + 1 + " <a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
+                        text += i + 1 + "<a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
                     }
                     d3.select("#comments").html(text);
                 });
