@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1 id="channelTitle">読み込み中...</h1>
+
+<div id="subscriberCount"></div>
+<div id="videoCount"></div>
+<div id="viewCount"></div>
+
+<script>
+fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTZxMYtV5MXnnauhxp7GW0JSmy_AMEBDsplS9T1iz1R1oLIgXF3MBeM4JlkzlDjbCJIDEsOaL0UP2GQfj3SdXeSiRbqMMJl1684y9fr8eoqLwnYD2aVZ8D_ahZgiGx3QeustU9UtfUOFV5zOnp3z_0oD41NZPzxt_QXmdxH01j1RyvNLIzgoPFSP9_evbCdn6VDXIuqbzs3iDzVCkxBv0Q7ZhdIDRiMkkYyWMMrkpIw6sn30loi0T_PNWbltmzcRV32zq2BvY1nnHgFVrCjGcffb0ip2A&lib=M-noDS1-CyyjSghtgkdF-r9MnZ4Zf8Lyc")
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("channelTitle").textContent =
+        data.channelTitle;
+
+    document.getElementById("subscriberCount").textContent =
+        "登録者数: " + data.subscriberCount;
+
+    document.getElementById("videoCount").textContent =
+        "動画数: " + data.videoCount;
+
+    document.getElementById("viewCount").textContent =
+        "再生数: " + data.viewCount;
+});
+</script>
+
+</body>
+</html>
