@@ -263,3 +263,7 @@ button .button-right {
     cursor: pointer;
     margin: 5px;
 }
+
+.main-left {
+    height: 100vh;
+}
