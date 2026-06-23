@@ -403,6 +403,14 @@
                 </a>
             </table>
             <h1>KamTapeの動画</h1>
+            <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
+            <script>
+                window.RufflePlayer.config = {
+                    "unmuteOverlay": "hidden",
+                    "autoplay": "on"
+                };
+            </script>
             <object width="425" height="350">
                 <param name="movie" value="http://www.kamtape.com/v/BNtDFfsPITQ">
                 </param>
@@ -487,14 +495,6 @@ shockwave-flash" wmode="transparent" width="318" height="262"></embed>
     </div>
     </div>
     </div>
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
-
-    <script>
-        window.RufflePlayer.config = {
-            "unmuteOverlay": "hidden",
-            "autoplay": "on"
-        };
-    </script>
 </body>
 
 </html>
