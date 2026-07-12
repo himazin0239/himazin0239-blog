@@ -161,6 +161,128 @@
                 <div class="scratch-container">
 
                     <div class="scratch-header">
+                        ミュージックプレイヤー
+                    </div>
+
+                    <style>
+                        .player {
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 20px;
+                            text-align: center;
+                            margin-left: -25px;
+                        }
+
+                        .cover {
+                            width: 150px;
+                            height: 150px;
+                            margin: 0 auto;
+                            /* ジャケットを中央 */
+                        }
+
+                        .cover img {
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+
+                        .spin {
+                            animation: spin 4s linear infinite;
+                        }
+
+                        @keyframes spin {
+                            from {
+                                transform: rotate(0deg);
+                            }
+
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+                        #title {
+                            color: #000;
+                            text-align: center;
+                        }
+
+                        .slider {
+                            width: 200px;
+                            display: block;
+                            margin: 10px auto;
+                            /* スライダーを中央 */
+                        }
+
+                        /* ボタンを中央 */
+                        .controls {
+                            text-align: center;
+                        }
+
+                        .controls img {
+                            margin: 0 5px;
+                            cursor: pointer;
+                        }
+                    </style>
+                    <div class="player">
+                        <div class="cover"><img id="cover" src="./img/dvd.png"></div>
+                        <p id="title">曲タイトル</p>
+                        <input type="range" id="progress" class="slider" value="0">
+                        <div class="controls">
+                            <img id="prev" src="./img/back.png" width="50">
+                            <img id="play" src="./img/play.png" width="50">
+                            <img id="next" src="./img/next.png" width="50">
+                        </div>
+                        <audio id="audio"></audio>
+                    </div>
+                    <script>
+                        var audio = document.getElementById("audio");
+                        var playBtn = document.getElementById("play");
+                        var prevBtn = document.getElementById("prev");
+                        var nextBtn = document.getElementById("next");
+                        var progress = document.getElementById("progress");
+                        var songTitle = document.getElementById("title");
+                        var cover = document.getElementById("cover");
+                        var playImage = "./img/play.png";
+                        var pauseImage = "./img/stop.png";
+                        var songs = [
+                            { title: "Yume 2kki - Lotus Waters", file: "./sound/yume 2kki - lotus waters.mp3", cover: "./img/dvd.png" },
+                            { title: "Takeshi Abo - LEASE", file: "./sound/Takeshi Abo - LEASE.mp3", cover: "./img/dvd.png" },
+                            { title: "Rick Astley - Never Gonna Give You Up", file: "./sound/Rick Astley - Never Gonna Give You Up.mp3", cover: "./img/dvd.png" }
+                        ];
+                        var index = 0;
+                        function loadSong(i) {
+                            audio.src = songs[i].file;
+                            songTitle.innerHTML = songs[i].title;
+                            cover.src = songs[i].cover;
+                            progress.value = 0;
+                        }
+                        loadSong(index);
+                        playBtn.onclick = function () {
+                            if (audio.paused) { audio.play(); cover.className = "spin"; playBtn.src = pauseImage; }
+                            else { audio.pause(); cover.className = ""; playBtn.src = playImage; }
+                        };
+                        nextBtn.onclick = function () {
+                            index++; if (index >= songs.length) { index = 0; }
+                            loadSong(index); audio.play(); cover.className = "spin"; playBtn.src = pauseImage;
+                        };
+                        prevBtn.onclick = function () {
+                            index--; if (index < 0) { index = songs.length - 1; }
+                            loadSong(index); audio.play(); cover.className = "spin"; playBtn.src = pauseImage;
+                        };
+                        audio.ontimeupdate = function () {
+                            if (audio.duration) { progress.value = (audio.currentTime / audio.duration) * 100; }
+                        };
+                        progress.oninput = progress.onchange = function () {
+                            if (audio.duration) { audio.currentTime = (progress.value / 100) * audio.duration; }
+                        };
+                        audio.onended = function () { nextBtn.onclick(); };
+                    </script>
+
+                </div>
+            </div>
+            <div class="main-left-grid">
+
+                <div class="scratch-container">
+
+                    <div class="scratch-header">
                         YouTubeの情報
                     </div>
 
