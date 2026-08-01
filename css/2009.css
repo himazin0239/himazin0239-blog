@@ -7,10 +7,10 @@
 
 body {
     font-family: Tahoma, "MS UI Gothic", sans-serif;
-    background-color: rgb(93, 122, 164);
-    background-image: url(../img/wallpaper.jpg);
+    background-image: url(../img/sky-wallpaper.JPG);
     background-repeat: no-repeat;
-    background-position: bottom center;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .top-banner {
@@ -188,4 +188,51 @@ button .button-right {
 button {
     position: relative;
     z-index: 10;
+}
+
+.scratch-container {
+    width: 100%;
+    margin: 20px auto;
+    background: white;
+    border: 1px solid #2537DA;
+}
+
+.scratch-header {
+    background-image: url(../img/header-2.png);
+    color: white;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.scratch-content {
+    padding: 10px;
+}
+
+.scratch-profile-img {
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #aaa;
+}
+
+.scratch-box {
+    border: 1px solid #aaa;
+    margin-top: 10px;
+}
+
+.scratch-box-title {
+    background: #eeeeee;
+    padding: 3px;
+    font-weight: bold;
+}
+
+.scratch-box-content {
+    padding: 5px;
+    white-space: pre-line;
+}
+
+.scratch-footer {
+    font-size: 12px;
+    text-align: center;
+    padding: 5px;
+    color: #666;
 }

@@ -1,30 +1,102 @@
 @charset "utf-8";
 
-::before,
-::after {
+* {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-image: url(../img/wallpaper.jpg);
-    background-size: 100%;
+    font-family: Tahoma, "MS UI Gothic", sans-serif;
+    background-image: url(../img/sky-wallpaper.JPG);
+    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
-    display: flex;
-    flex-direction: column;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: "Segoe UI", Meiryo, sans-serif;
 }
 
-.header-menu a {
-    text-decoration: none;
-    color: #0066CC;
+.top-banner {
+    background-image: url(../img/header.png);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 150px;
+    height: 45px;
+    color: #ffffff;
+    font-size: 30px;
 }
 
-.header-menu a:hover {
-    color: #0058B0;
+.top-banner-img {
+    margin-left: 10px;
+}
+
+.top-banner-img img {
+    width: 280px;
+}
+
+#main-left {
+    background-color: #e6e6e6;
+    width: 300px;
+    float: left;
+}
+
+#main-right {
+    float: left;
+    width: 700px;
+    margin-left: 20px;
+}
+
+#main-right a {
+    color: #ffffff;
+}
+
+#main {
+    overflow: hidden;
+}
+
+.main-left-grid {
+    background-color: #ffffff;
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+.main-left-title {
+    font-size: 25px;
+}
+
+#main-left-grid-myicon {
+    width: 150px;
+}
+
+#main-left-grid-syousai {
+    margin-left: 30px;
+}
+
+#main-left-grid-syousai ul {
+    margin-left: 30px;
+}
+
+.mail {
+    overflow: hidden;
+}
+
+.mail-image {
+    float: left;
+    width: 24px;
+    height: 24px;
+}
+
+.menu {
+    background-image: url(../img/menu-background.png);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: 65px;
+    height: 33px;
+    overflow: hidden;
+}
+
+.menu-text {
+    font-size: 16px;
+    float: left;
+    margin-left: 16px;
+    margin-top: 6px;
 }
 
 button {
@@ -35,7 +107,7 @@ button {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
-    font-family: "Segoe UI", sans-serif;
+    font-family: Tahoma, "MS UI Gothic", sans-serif;
 }
 
 button .button-left {
@@ -66,223 +138,101 @@ button .button-right {
     background: url("../img/button3.gif") no-repeat;
 }
 
-.header,
-.main,
-.footer {
-    width: 1000px;
+.welcome-box {
+    position: relative;
+    min-height: 320px;
 }
 
-.header-inner {
-    margin-left: 50px;
+.welcome-text {
+    position: absolute;
+    left: 0;
+    top: 0;
 }
 
-.header {
-    background-image: url(../img/header.jpg);
-    background-repeat: no-repeat;
-    margin-top: -10px;
+#minecraft {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 180px;
+    margin-top: 20px;
 }
 
-.header-1 {
-    text-align: right;
-    margin-right: 50px;
-    font-size: 12.5px;
+.news-area {
+    margin-top: -240px;
+    overflow: hidden;
 }
 
-.header-menu {
-    display: flex;
+.news {
+    float: left;
+    width: 220px;
+    margin-right: 15px;
 }
 
-.header-menu p {
-    margin-right: 12.5px;
+.welcome-box {
+    position: relative;
+    z-index: 1;
 }
 
-.main {
-    background-image: url(../img/main.jpg);
-    background-repeat: repeat-y;
+.news-area {
+    position: relative;
+    z-index: 2;
 }
 
-.main-about {
-    margin-left: 2px;
-    max-width: 959px;
-    max-height: 249px;
-    background: linear-gradient(to right, #00eeda, #4ed481, #0c8f00);
-    display: flex;
+#minecraft {
+    position: absolute;
+    right: 0;
+    top: 0;
+    pointer-events: none;
 }
 
-.main-inner {
-    margin-left: 52px;
-    display: flex;
+button {
+    position: relative;
+    z-index: 10;
 }
 
-.main-inner-main {
-    width: 448px;
-}
-
-.main-inner-right {
-    background: linear-gradient(to bottom, #e3edff 20%, #effff0 80%, #ffffff 100%);
-    max-width: 202.5px;
+.scratch-container {
     width: 100%;
-    margin-left: -2px;
+    margin: 20px auto;
+    background: white;
+    border: 1px solid #2537DA;
 }
 
-.main-inner-right-main {
-    margin-left: 20px;
+.scratch-header {
+    background-image: url(../img/header-2.png);
+    color: white;
+    padding: 5px;
+    font-weight: bold;
 }
 
-.main-inner-right-title {
-    color: #00b60f;
+.scratch-content {
+    padding: 10px;
 }
 
-.main-inner-main h1 {
-    color: #00b60f;
+.scratch-profile-img {
+    float: left;
+    margin-right: 10px;
+    border: 1px solid #aaa;
 }
 
-.main-inner-icon2 {
-    margin-left: 10px;
-    margin-top: -125px;
+.scratch-box {
+    border: 1px solid #aaa;
+    margin-top: 10px;
 }
 
-.main-about-about-title {
-    color: #333333;
-    font-size: 27.36px;
-    margin-left: 10px;
+.scratch-box-title {
+    background: #eeeeee;
+    padding: 3px;
+    font-weight: bold;
 }
 
-.main-about-about-explanation {
-    color: #ffffff;
-    font-size: 27.36px;
-    margin-top: -25px;
-    margin-left: 10px;
+.scratch-box-content {
+    padding: 5px;
+    white-space: pre-line;
 }
 
-.kiji a {
-    text-decoration: none;
-    color: #0092cc;
-}
-
-.kiji a:hover {
-    color: #0061b0;
-}
-
-.footer {
-    background-image: url(../img/footer.jpg);
-    background-repeat: no-repeat;
-}
-
-.footer-inner {
-    margin-left: 50px;
-}
-
-.footer-inner-inner {
-    display: flex;
-}
-
-.footer-menu {
-    margin-left: 225px;
-    display: flex;
-}
-
-.footer-menu p {
-    margin-right: 12.5px;
-}
-
-.footer-logo {
-    width: 120px;
-    height: 40px;
-}
-
-.mail {
-    display: flex;
-}
-
-.mail-image {
-    width: 24px;
-    height: 24px;
-}
-
-.mail-text {
-    margin-left: 10px;
-    margin-top: -0px;
-}
-
-.syousai {
-    display: flex;
-}
-
-.user-picture {
-    width: 200px;
-}
-
-.test {
-    display: none;
-}
-
-.dvd {
-    font-family: sans-serif;
-    color: #1cacff;
+.scratch-footer {
+    font-size: 12px;
     text-align: center;
-}
-
-.player {
-    width: calc(100% - 15px);
-    border-radius: 10px;
-}
-
-.cover {
-    width: 150px;
-    height: 150px;
-    margin: auto;
-}
-
-.cover img {
-    width: 100%;
-    border-radius: 50%;
-}
-
-.spin {
-    animation: spin 4s linear infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-#progress {
-    width: 100%;
-    margin: 15px 0;
-}
-
-.controls img {
-    width: 40px;
-    cursor: pointer;
-    margin: 5px;
-}
-
-.main-left {
-    height: 100vh;
-}
-
-input[type="range"]::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    background: url('../img/off.png') no-repeat center;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
-}
-
-/* IE/Edge用 */
-input[type="range"]::-ms-thumb {
-    width: 32px;
-    height: 32px;
-    background: url('../img/off.png') no-repeat center;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
+    padding: 5px;
+    color: #666;
 }
