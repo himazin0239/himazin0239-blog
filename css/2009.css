@@ -5,12 +5,22 @@
     padding: 0;
 }
 
+html {
+    min-width: 1020px;
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    min-width: 1020px;
+
     font-family: Tahoma, "MS UI Gothic", sans-serif;
     background-image: url(../img/sky-wallpaper.JPG);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+
+    overflow-x: auto;
 }
 
 .top-banner {
@@ -33,14 +43,22 @@ body {
 
 #main-left {
     background-color: #e6e6e6;
+
     width: 300px;
-    float: left;
+    min-width: 300px;
+    max-width: 300px;
+
+    flex: 0 0 300px;
 }
 
 #main-right {
-    float: left;
     width: 700px;
+    min-width: 700px;
+    max-width: 700px;
+
     margin-left: 20px;
+
+    flex: 0 0 700px;
 }
 
 #main-right a {
@@ -48,7 +66,12 @@ body {
 }
 
 #main {
-    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 1020px;
+    min-width: 1020px;
+    overflow: visible;
 }
 
 .main-left-grid {

@@ -8,6 +8,29 @@
     <link rel="stylesheet" type="text/css" href="./css/2009.css">
     <link rel="shortcut icon" href="./img/Windows_7_Icon.ico" type="image/x-icon">
     <link rel="icon" href="./img/Windows_7_Icon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            var PC_WIDTH = 1020;
+        
+            function resizeForMobile() {
+                var width = window.innerWidth;
+        
+                if (width < PC_WIDTH) {
+                    var scale = width / PC_WIDTH;
+        
+                    document.body.style.zoom = scale;
+                    document.body.style.width = PC_WIDTH + "px";
+                } else {
+                    document.body.style.zoom = "1";
+                    document.body.style.width = "";
+                }
+            }
+        
+            window.addEventListener("load", resizeForMobile);
+            window.addEventListener("resize", resizeForMobile);
+        })();
+        </script>
 </head>
 
 <body>
@@ -574,8 +597,6 @@
                 });
             </script>
         </div>
-    </div>
-    </div>
     </div>
 </body>
 
