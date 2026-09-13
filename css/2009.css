@@ -38,7 +38,7 @@ body {
 }
 
 .top-banner-img img {
-    width: 280px;
+    width: 340px;
 }
 
 #main-left {
@@ -258,4 +258,9 @@ button {
     text-align: center;
     padding: 5px;
     color: #666;
+}
+
+.User-Picture1 {
+    margin-top: 3px;
+    float: right;
 }
