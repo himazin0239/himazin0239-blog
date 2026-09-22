@@ -172,12 +172,13 @@ button .button-right {
     top: 0;
 }
 
-#minecraft {
+#myfox {
     position: absolute;
     right: 0;
     top: 0;
-    width: 180px;
+    width: 250px;
     margin-top: 20px;
+    margin-right: -100px;
 }
 
 .news-area {
