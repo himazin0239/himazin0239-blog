@@ -1,0 +1,187 @@
+<html lang="en"><head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>YouTubeの動画</title>
+	<style>
+		body {
+			overflow: hidden;
+		}
+
+		.html5_video {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			cursor: pointer;
+		}
+
+		.timer {
+			top: -6px !important;
+		}
+
+		.hid {
+			display: none;
+		}
+	</style>
+	<!--yt2009_style_hq_button-->
+
+	<link rel="stylesheet" href="./css/html5-player.css">
+
+	<style>
+		/*
+		transparent hd/hq
+		*/
+		
+		.video_controls .hq {
+			background-position: 0px -48px !important;
+		}
+
+		.video_controls .hq:hover,
+		.video_controls .hq.enabled {
+			background-position: -31px -48px !important;
+		}
+
+		.video_controls .hd {
+			background-position: -62px -48px !important;
+		}
+
+		.video_controls .hd:hover,
+		.video_controls .hd.enabled {
+			background-position: -93px -48px !important;
+		}
+	</style>
+
+	<style>
+		/*
+		=======
+		css wygenerowany na podstawie parametrów color1 i color2.
+		=======
+		*/
+
+		
+        .video_controls .play_btn,
+        .video_controls .pause_btn,
+        .video_controls .seek_btn,
+        .video_controls .volume_button,
+        .volume_popout .volume_head,
+        .video_controls .player_additions {
+            background-image: url("./img.youtube/player-buttons-transparent.png") !important;
+        }
+            .video_controls {
+                border: 1px #b1b1b1 solid;
+            }
+            .video_controls .play_btn, .video_controls .pause_btn {
+                border-right: 1px #b1b1b1 solid;
+            }
+            .video_controls .seek, .video_controls .elapsed {
+                border: 1px #b1b1b1 solid;
+            }
+            .video_controls .volume_container,
+            .video_controls .player_additions,
+            .video_controls .hq {
+                border-left: 1px #b1b1b1 solid;
+                border-right: 1px #b1b1b1 solid;
+            }
+
+            .video_controls .loaded {
+                top: 1px;
+                background-position: 0px -1px;
+            }
+
+            .video_controls .elapsed {
+                top: 0px;
+                background-position: 0px -1px;
+            }
+
+            .video_controls .seek, .video_controls .elapsed, .video_controls .loaded {
+                height: 7px !important;
+            }
+        
+
+		
+	</style>
+</head>
+<body style="font: 12px Arial, sans-serif;background: black;">
+	<div class="embed-container">
+		<video class="html5_video" style="">
+		</video>
+		<div class="volume_popout">
+			<span class="volume_head"></span>
+		</div>
+		<div class="player_additions_popout" style="bottom: -59px;">
+			<span class="annotations none"></span>
+			<span class="cc none">
+				<div class="triangle-container">
+					<span class="triangle"></span>
+				</div>
+			</span>
+			<span class="captions_popup" style="display: none;">
+				<div class="captions_popup_container">
+					<h2>Caption Actions</h2>
+					<h2>Caption Selection</h2>
+					<ul class="captions_selection">
+					</ul>
+				</div>
+			</span>
+		<div style="display: none;" class="player_additions_tooltip"><span id="tooltip-entry"></span><span id="tooltip-text-container"><span id="tooltip-text"></span></span><span id="tooltip-end"></span></div></div>
+		<div class="video_controls" style="bottom: 0px;">
+			<span class="play_btn" style="display: none;"></span>
+			<span class="pause_btn" style="display: block;"></span>
+			<div class="progress_container">
+				<span class="seek"></span>
+				<span class="loaded" style="width: 99.989%;"></span>
+				<span class="elapsed" style="width: 6.90064%;">
+					<span class="seek_btn"></span>
+				</span>
+			</div>
+			<p class="timer">0:05 / 1:20</p>
+			<div class="volume_container">
+				<span class="volume_button"></span>
+			</div>
+			<!--yt2009_hq_btn-->
+			<span class="fullscreen" style="background-position: -28px 0px;"></span>
+			<span class="player_additions"></span>
+			<span class="flashing-btn pause hid modern" style="opacity: 0.7;width: 0px;height: 0px;"></span>
+			<span class="flashing-btn play hid modern" style="opacity: 0.7;width: 0px;height: 0px;"></span>
+		</div>
+		<span class="html5-loading  hid" style="left: 624px; top: 315px;"></span>
+		<span class="seek_time hid" style="top: 639px; left: 34px;"><p class="seek_time_text">0:00</p></span>
+		<div class="endscreen hid">
+			<div class="button-replay yt-center" style="margin-top: 150px;cursor: pointer;" onclick="videoReplay();">
+				<img src="./img/youtube/replay2.png">
+				<h2>Replay</h2>
+			</div>
+		</div>
+		<span class="embed-play-btn" style="display: none;" onclick="video.play();"></span>
+		<style class="player_auto_css">.progress_container {width: calc(100% - 215px);}.embed-play-btn {left: 590px;top: 293.5px;}.endscreen-section {            width: 387px;            left: 446px        }        .endscreen-video-info {            max-width: 269px;        }        .endscreen-video-title {            width: 260px;        }        .flash-player.widescreen .endscreen .yt-center.buttons {            left: 32%;        }        .flash-player.widescreen .endscreen .yt-center.buttons div {            width: 18%;        }</style>
+	</div>
+	<script src="./js/html5-player.js"></script>
+    <script>
+        // URLの ?v= から動画ファイル名を取得
+        const params = new URLSearchParams(window.location.search);
+        const videoFile = params.get("v");
+    
+        if (videoFile) {
+            document.querySelector(".html5_video").src =
+                "/assets/" + videoFile;
+        }
+    </script>
+    
+    <script src="./js/html5-player.js"></script>
+    
+    <script>
+        initPlayer(document, true);
+    
+        fadeControlsEnable = false;
+    
+        var s = document.createElement("style");
+        s.innerHTML =
+            "video {height: calc(100% - 25px) !important;}" +
+            "#watch-player-div {background: black !important;}";
+        document.body.appendChild(s);
+    </script>
+	<!--related_hook-->
+
+</body></html>
