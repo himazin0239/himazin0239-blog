@@ -8,6 +8,28 @@
     <link rel="stylesheet" type="text/css" href="../css/2009.css">
     <link rel="shortcut icon" href="../img/Windows_7_Icon.ico" type="image/x-icon">
     <link rel="icon" href="../img/Windows_7_Icon.ico" type="image/x-icon">
+    <script>
+        (function () {
+            var PC_WIDTH = 1020;
+
+            function resizeForMobile() {
+                var width = window.innerWidth;
+
+                if (width < PC_WIDTH) {
+                    var scale = width / PC_WIDTH;
+
+                    document.body.style.zoom = scale;
+                    document.body.style.width = PC_WIDTH + "px";
+                } else {
+                    document.body.style.zoom = "1";
+                    document.body.style.width = "";
+                }
+            }
+
+            window.addEventListener("load", resizeForMobile);
+            window.addEventListener("resize", resizeForMobile);
+        })();
+    </script>
 </head>
 
 <body>
@@ -44,17 +66,16 @@
         <div class="menu-text">
             <p>拡張機能系</p>
         </div>
+        <div class="User-Picture1">
+            <img src="../img/lb___windows_user_by_nironan12_d2jtdhx.png" width=125>
+            <img src="../img/lb___skype_user_by_nironan12_d2k5klo.png" width=125>
+            <img src="../img/lb___minecraft_fan_by_nironan12_d35ka74-fullview.jpg" width=125>
+            <img src="../img/lb___mozilla_firefox_by_nironan12_d2k9gva-fullview.jpg" width=125>
+            <img src="../img/lb___the_gimp_by_nironan12_d35pc34-fullview.jpg" width=125>
+        </div>
     </div>
     <div id="main">
         <div id="main-left">
-            <br>
-            <div class="main-left-grid">
-                <img src="../img/lb___windows_user_by_nironan12_d2jtdhx.png" width=125>
-                <img src="../img/lb___skype_user_by_nironan12_d2k5klo.png" width=125>
-                <img src="../img/lb___minecraft_fan_by_nironan12_d35ka74-fullview.jpg" width=125>
-                <img src="../img/lb___mozilla_firefox_by_nironan12_d2k9gva-fullview.jpg" width=125>
-                <img src="../img/lb___the_gimp_by_nironan12_d35pc34-fullview.jpg" width=125>
-            </div>
             <div class="main-left-grid">
                 <div class="scratch-container">
 
@@ -328,7 +349,7 @@
                         <ul id="main-left-grid-syousai">
                             <li>年齢: 13歳</li>
                             <li>性別: 男性</li>
-                            <li>主な活動場所: Scratch・Discord</li>
+                            <li>主な活動場所: Scratch・Discord・YouTube</li>
                             <li>スク友</li>
                             <ul>
                                 <li>
@@ -338,7 +359,7 @@
                                     <a href="https://scratch.mit.edu/users/_nigiri/">_nigiri</a>
                                 </li>
                                 <li>
-                                    <a href="https://scratch.mit.edu/users/windows11atPro/">windows11atPro</a>
+                                    <a href="https://scratch.mit.edu/users/windows11atPro/">Windowstukareta</a>
                                 </li>
                             </ul>
                         </ul>
@@ -350,13 +371,15 @@
             <div class="main-left-grid">
                 <div class="scratch-container">
                     <div class="scratch-header">
-                        Mail
+                        Link
                     </div>
 
                     <div class="scratch-content">
                         <div class="mail">
                             <img src="../img/mail_icon.png" class="mail-image">
-                            <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
+                            <a href="mailto:wdq.ewfjiow8402@gmail.com">
+                                <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
+                            </a>
                         </div>
                         <br>
                         <div class="mail">
@@ -366,17 +389,23 @@
                         <br>
                         <div class="mail">
                             <img src="../img/scratch_icon.png" class="mail-image">
-                            <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="../img/bluesky_icon.png" class="mail-image">
-                            <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
+                            <a href="https://scratch.mit.edu/users/himazin0239/">
+                                <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
+                            </a>
                         </div>
                         <br>
                         <div class="mail">
                             <img src="../img/youtube_icon.png" class="mail-image">
-                            <p class="mail-text">https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg</p>
+                            <a href="https://www.youtube.com/@himazin0239">
+                                <p class="mail-text">https://www.youtube.com/@himazin0239</p>
+                            </a>
+                        </div>
+                        <br>
+                        <div class="mail">
+                            <img src="../img/bluesky_icon.png" class="mail-image">
+                            <a href="https://bsky.app/profile/himazin0239.bsky.social">
+                                <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -388,14 +417,13 @@
                     </div>
 
                     <div class="scratch-content">
-                        <img src="../img/explorer.gif" width="125">
-                        <img src="../img/msnexp.gif" width="125">
-                        <a href="https://2011-msn.neocities.org/">
-                            <img src="../img/Advertisement1.png" width="125">
+                        <a href="https://miiverse.projectrose.cafe/">
+                            <img src="../img/Miiverse1.png" width="200">
                         </a>
                         <a href="https://www.firefox.com/ja/">
-                            <img src="../img/spreadfirefox.png" width="125">
+                            <img src="../img/spreadfirefox.png" width="200">
                         </a>
+                        <img src="../img/msnexp.gif" width="150">
                     </div>
                 </div>
             </div>

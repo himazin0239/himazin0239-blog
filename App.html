@@ -8,54 +8,28 @@
     <link rel="stylesheet" type="text/css" href="./css/2009.css">
     <link rel="shortcut icon" href="./img/Windows_7_Icon.ico" type="image/x-icon">
     <link rel="icon" href="./img/Windows_7_Icon.ico" type="image/x-icon">
-    <style>
-        .scratch-container {
-            width: 100%;
-            margin: 20px auto;
-            background: white;
-            border: 2px solid #3a6ea5;
-        }
+    <script>
+        (function () {
+            var PC_WIDTH = 1020;
 
-        .scratch-header {
-            background: #3a6ea5;
-            color: white;
-            padding: 5px;
-            font-weight: bold;
-        }
+            function resizeForMobile() {
+                var width = window.innerWidth;
 
-        .scratch-content {
-            padding: 10px;
-        }
+                if (width < PC_WIDTH) {
+                    var scale = width / PC_WIDTH;
 
-        .scratch-profile-img {
-            float: left;
-            margin-right: 10px;
-            border: 1px solid #aaa;
-        }
+                    document.body.style.zoom = scale;
+                    document.body.style.width = PC_WIDTH + "px";
+                } else {
+                    document.body.style.zoom = "1";
+                    document.body.style.width = "";
+                }
+            }
 
-        .scratch-box {
-            border: 1px solid #aaa;
-            margin-top: 10px;
-        }
-
-        .scratch-box-title {
-            background: #eeeeee;
-            padding: 3px;
-            font-weight: bold;
-        }
-
-        .scratch-box-content {
-            padding: 5px;
-            white-space: pre-line;
-        }
-
-        .scratch-footer {
-            font-size: 12px;
-            text-align: center;
-            padding: 5px;
-            color: #666;
-        }
-    </style>
+            window.addEventListener("load", resizeForMobile);
+            window.addEventListener("resize", resizeForMobile);
+        })();
+    </script>
 </head>
 
 <body>
@@ -92,6 +66,13 @@
         <div class="menu-text">
             <p>拡張機能系</p>
         </div>
+        <div class="User-Picture1">
+            <img src="./img/lb___windows_user_by_nironan12_d2jtdhx.png" width=125>
+            <img src="./img/lb___skype_user_by_nironan12_d2k5klo.png" width=125>
+            <img src="./img/lb___minecraft_fan_by_nironan12_d35ka74-fullview.jpg" width=125>
+            <img src="./img/lb___mozilla_firefox_by_nironan12_d2k9gva-fullview.jpg" width=125>
+            <img src="./img/lb___the_gimp_by_nironan12_d35pc34-fullview.jpg" width=125>
+        </div>
     </div>
     <div id="main">
         <div id="main-left">
@@ -110,7 +91,11 @@
                         </marquee>
                         <marquee direction="left" scrollamount="8"
                             style="color:#000000; width: 100%; height: 20px; background: #c4d9ff; border: 1px solid #90b7ff;">
-                            <p>Youtubeもやってるので是非見てみてください! きっと誰かがチャンネル登録をしてくれるはずです...</p>
+                            <p>YouTubeもやってるので是非見てみてください! きっと誰かがチャンネル登録をしてくれるはずです...</p>
+                        </marquee>
+                        <marquee direction="left" scrollamount="8"
+                            style="color:#000000; width: 100%; height: 20px; background: #c4d9ff; border: 1px solid #90b7ff;">
+                            <p>YouTubeの方は今年中に100人目標!!!! チャンネル登録してくれ!!!</p>
                         </marquee>
 
                     </div>
@@ -142,6 +127,165 @@
                         <p>です</p>
 
                     </div>
+
+                </div>
+            </div>
+            <div class="main-left-grid">
+
+                <div class="scratch-container">
+
+                    <div class="scratch-header">
+                        ミュージックプレイヤー
+                    </div>
+
+                    <style>
+                        .player {
+                            width: 100%;
+                            max-width: 400px;
+                            padding: 20px;
+                            text-align: center;
+                            margin-left: -25px;
+                        }
+
+                        .cover {
+                            width: 150px;
+                            height: 150px;
+                            margin: 0 auto;
+                            /* ジャケットを中央 */
+                        }
+
+                        .cover img {
+                            width: 100%;
+                            border-radius: 50%;
+                        }
+
+                        .spin {
+                            animation: spin 4s linear infinite;
+                        }
+
+                        @keyframes spin {
+                            from {
+                                transform: rotate(0deg);
+                            }
+
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+                        #title {
+                            color: #000;
+                            text-align: center;
+                        }
+
+                        .slider {
+                            width: 200px;
+                            display: block;
+                            margin: 10px auto;
+                            /* スライダーを中央 */
+                        }
+
+                        /* ボタンを中央 */
+                        .controls {
+                            text-align: center;
+                        }
+
+                        .controls img {
+                            margin: 0 5px;
+                            cursor: pointer;
+                        }
+                    </style>
+                    <div class="player">
+                        <div class="cover"><img id="cover" src="./img/dvd.png"></div>
+                        <p id="title">曲タイトル</p>
+                        <input type="range" id="progress" class="slider" value="0">
+                        <div class="controls">
+                            <img id="prev" src="./img/back.png" width="50">
+                            <img id="play" src="./img/play.png" width="50">
+                            <img id="next" src="./img/next.png" width="50">
+                        </div>
+                        <audio id="audio"></audio>
+                    </div>
+                    <script>
+                        var audio = document.getElementById("audio");
+                        var playBtn = document.getElementById("play");
+                        var prevBtn = document.getElementById("prev");
+                        var nextBtn = document.getElementById("next");
+                        var progress = document.getElementById("progress");
+                        var songTitle = document.getElementById("title");
+                        var cover = document.getElementById("cover");
+                        var playImage = "./img/play.png";
+                        var pauseImage = "./img/stop.png";
+                        var songs = [
+                            { title: "Yume 2kki - Lotus Waters", file: "./sound/yume 2kki - lotus waters.mp3", cover: "./img/dvd.png" },
+                            { title: "Takeshi Abo - LEASE", file: "./sound/Takeshi Abo - LEASE.mp3", cover: "./img/dvd.png" },
+                            { title: "Rick Astley - Never Gonna Give You Up", file: "./sound/Rick Astley - Never Gonna Give You Up.mp3", cover: "./img/dvd.png" }
+                        ];
+                        var index = 0;
+                        function loadSong(i) {
+                            audio.src = songs[i].file;
+                            songTitle.innerHTML = songs[i].title;
+                            cover.src = songs[i].cover;
+                            progress.value = 0;
+                        }
+                        loadSong(index);
+                        playBtn.onclick = function () {
+                            if (audio.paused) { audio.play(); cover.className = "spin"; playBtn.src = pauseImage; }
+                            else { audio.pause(); cover.className = ""; playBtn.src = playImage; }
+                        };
+                        nextBtn.onclick = function () {
+                            index++; if (index >= songs.length) { index = 0; }
+                            loadSong(index); audio.play(); cover.className = "spin"; playBtn.src = pauseImage;
+                        };
+                        prevBtn.onclick = function () {
+                            index--; if (index < 0) { index = songs.length - 1; }
+                            loadSong(index); audio.play(); cover.className = "spin"; playBtn.src = pauseImage;
+                        };
+                        audio.ontimeupdate = function () {
+                            if (audio.duration) { progress.value = (audio.currentTime / audio.duration) * 100; }
+                        };
+                        progress.oninput = progress.onchange = function () {
+                            if (audio.duration) { audio.currentTime = (progress.value / 100) * audio.duration; }
+                        };
+                        audio.onended = function () { nextBtn.onclick(); };
+                    </script>
+
+                </div>
+            </div>
+            <div class="main-left-grid">
+
+                <div class="scratch-container">
+
+                    <div class="scratch-header">
+                        YouTubeの情報
+                    </div>
+
+                    <b>
+                        <p id="channelTitle">読み込み中...</p>
+                    </b>
+
+                    <div id="subscriberCount"></div>
+                    <div id="videoCount"></div>
+                    <div id="viewCount"></div>
+
+                    <script>
+                        fetch("https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnTZxMYtV5MXnnauhxp7GW0JSmy_AMEBDsplS9T1iz1R1oLIgXF3MBeM4JlkzlDjbCJIDEsOaL0UP2GQfj3SdXeSiRbqMMJl1684y9fr8eoqLwnYD2aVZ8D_ahZgiGx3QeustU9UtfUOFV5zOnp3z_0oD41NZPzxt_QXmdxH01j1RyvNLIzgoPFSP9_evbCdn6VDXIuqbzs3iDzVCkxBv0Q7ZhdIDRiMkkYyWMMrkpIw6sn30loi0T_PNWbltmzcRV32zq2BvY1nnHgFVrCjGcffb0ip2A&lib=M-noDS1-CyyjSghtgkdF-r9MnZ4Zf8Lyc")
+                            .then(response => response.json())
+                            .then(data => {
+
+                                document.getElementById("channelTitle").textContent =
+                                    data.channelTitle;
+
+                                document.getElementById("subscriberCount").textContent =
+                                    "登録者数: " + data.subscriberCount;
+
+                                document.getElementById("videoCount").textContent =
+                                    "動画数: " + data.videoCount;
+
+                                document.getElementById("viewCount").textContent =
+                                    "再生数: " + data.viewCount;
+                            });
+                    </script>
 
                 </div>
             </div>
@@ -205,7 +349,7 @@
                         <ul id="main-left-grid-syousai">
                             <li>年齢: 13歳</li>
                             <li>性別: 男性</li>
-                            <li>主な活動場所: Scratch・Discord</li>
+                            <li>主な活動場所: Scratch・Discord・YouTube</li>
                             <li>スク友</li>
                             <ul>
                                 <li>
@@ -215,7 +359,7 @@
                                     <a href="https://scratch.mit.edu/users/_nigiri/">_nigiri</a>
                                 </li>
                                 <li>
-                                    <a href="https://scratch.mit.edu/users/windows11atPro/">windows11atPro</a>
+                                    <a href="https://scratch.mit.edu/users/windows11atPro/">Windowstukareta</a>
                                 </li>
                             </ul>
                         </ul>
@@ -227,13 +371,15 @@
             <div class="main-left-grid">
                 <div class="scratch-container">
                     <div class="scratch-header">
-                        Mail
+                        Link
                     </div>
 
                     <div class="scratch-content">
                         <div class="mail">
                             <img src="./img/mail_icon.png" class="mail-image">
-                            <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
+                            <a href="mailto:wdq.ewfjiow8402@gmail.com">
+                                <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
+                            </a>
                         </div>
                         <br>
                         <div class="mail">
@@ -243,17 +389,23 @@
                         <br>
                         <div class="mail">
                             <img src="./img/scratch_icon.png" class="mail-image">
-                            <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="./img/bluesky_icon.png" class="mail-image">
-                            <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
+                            <a href="https://scratch.mit.edu/users/himazin0239/">
+                                <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
+                            </a>
                         </div>
                         <br>
                         <div class="mail">
                             <img src="./img/youtube_icon.png" class="mail-image">
-                            <p class="mail-text">https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg</p>
+                            <a href="https://www.youtube.com/@himazin0239">
+                                <p class="mail-text">https://www.youtube.com/@himazin0239</p>
+                            </a>
+                        </div>
+                        <br>
+                        <div class="mail">
+                            <img src="./img/bluesky_icon.png" class="mail-image">
+                            <a href="https://bsky.app/profile/himazin0239.bsky.social">
+                                <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -265,14 +417,13 @@
                     </div>
 
                     <div class="scratch-content">
-                        <img src="./img/explorer.gif" width="125">
-                        <img src="./img/msnexp.gif" width="125">
-                        <a href="https://2011-msn.neocities.org/">
-                            <img src="./img/Advertisement1.png" width="125">
+                        <a href="https://miiverse.projectrose.cafe/">
+                            <img src="./img/Miiverse1.png" width="200">
                         </a>
                         <a href="https://www.firefox.com/ja/">
-                            <img src="./img/spreadfirefox.png" width="125">
+                            <img src="./img/spreadfirefox.png" width="200">
                         </a>
+                        <img src="./img/msnexp.gif" width="150">
                     </div>
                 </div>
             </div>
