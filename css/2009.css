@@ -265,3 +265,21 @@ button {
     margin-top: 3px;
     float: right;
 }
+
+.roblox-box {
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.roblox {
+    width: 255px;
+}
+
+.roblox-name {
+    text-align: center;
+}
+
+.roblox-name img {
+    width: 9px;
+    height: 9px;
+}
