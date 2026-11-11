@@ -253,333 +253,376 @@
 
                 </div>
             </div>
-            <div class="main-left-grid">
 
+            <div class="main-left-grid">
                 <div class="scratch-container">
 
                     <div class="scratch-header">
                         <span id="text">Roblox</span>
-
-                        <script>
-                            const textElement = document.getElementById('text');
-
-                            textElement.addEventListener('mouseenter', () => {
-                                textElement.textContent = 'Austiblox';
-                            });
-
-                            textElement.addEventListener('mouseleave', () => {
-                                textElement.textContent = 'Roblox';
-                            });
-                        </script>
                     </div>
-                    <div class="roblox-box">
-                        <a href="https://austiblox.net/user/himazin0239">
-                            <img src="https://austiblox.net/render/user/41/41614.png" class="roblox"
-                                referrerpolicy="no-referrer">
-                            <div class="roblox-name">
-                                <img src="./img/a041bdb2950b58b63815.png">
-                                <p>himazin0239</p>
-                            </div>
-                        </a>
+
+                    <style>
+                        .roblox-online {
+                            color: Red;
+                        }
+
+                        .roblox-name-name {
+                            color: #00F;
+                            text-decoration: none;
+                        }
+
+                        .roblox-name-name:hover {
+                            text-decoration: underline;
+                        }
+                    </style>
+
+                    <a href="https://austiblox.net/user/himazin0239">
+                        <img src="https://austiblox.net/render/user/41/41614.png" class="roblox"
+                            referrerpolicy="no-referrer"><br>
+                        <div class="roblox-name">
+                            <img src="./img/a041bdb2950b58b63815.png">
+                            <span class="roblox-name-name">himazin0239</span><br>
+                    </a>
+                    <span id="austiblox-status" class="roblox-online">[ Loading... ]</span>
+                </div>
+
+            </div>
+        </div>
+
+        <script>
+            const textElement = document.getElementById("text");
+
+            textElement.addEventListener("mouseenter", () => {
+                textElement.textContent = "Austiblox";
+            });
+
+            textElement.addEventListener("mouseleave", () => {
+                textElement.textContent = "Roblox";
+            });
+
+            const statusElement = document.getElementById(
+                "austiblox-status"
+            );
+
+            async function updateAustibloxStatus() {
+                try {
+                    const response = await fetch("/api/austiblox-status");
+
+                    if (!response.ok) {
+                        throw new Error("API request failed");
+                    }
+
+                    const data = await response.json();
+
+                    statusElement.textContent = data.status;
+
+                } catch (error) {
+                    console.error("Austiblox status:", error);
+
+                    statusElement.textContent = "[ Status unavailable ]";
+                }
+            }
+
+            updateAustibloxStatus();
+
+            setInterval(updateAustibloxStatus, 60000);
+        </script>
+
+        <div class="main-left-grid">
+
+            <div class="scratch-container">
+
+                <div class="scratch-header">
+                    Scratchユーザー情報
+                </div>
+
+                <div class="scratch-content">
+
+                    <img id="icon" class="scratch-profile-img" width="90">
+
+                    <div id="username"></div>
+                    <div id="joined"></div>
+                    <div id="country"></div>
+                    <div id="followers"></div>
+
+                    <div style="clear:both;"></div>
+
+                    <div class="scratch-box">
+                        <div class="scratch-box-title">私について</div>
+                        <div id="status" class="scratch-box-content"></div>
+                    </div>
+
+                    <div class="scratch-box">
+                        <div class="scratch-box-title">私が取り組んでいること</div>
+                        <div id="bio" class="scratch-box-content"></div>
                     </div>
 
                 </div>
+
             </div>
-            <div class="main-left-grid">
 
-                <div class="scratch-container">
+            <script>
+                // ユーザー情報
+                fetch("/api/user")
+                    .then(res => res.json())
+                    .then(data => {
+                        document.getElementById("icon").src = data.profile.images["90x90"];
+                        document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
+                        document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
+                        document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
+                        document.getElementById("status").textContent = data.profile.status;
+                        document.getElementById("bio").textContent = data.profile.bio;
+                    });
+            </script>
+        </div>
+        <div class="main-left-grid">
+            <div class="scratch-container">
 
-                    <div class="scratch-header">
-                        Scratchユーザー情報
-                    </div>
-
-                    <div class="scratch-content">
-
-                        <img id="icon" class="scratch-profile-img" width="90">
-
-                        <div id="username"></div>
-                        <div id="joined"></div>
-                        <div id="country"></div>
-                        <div id="followers"></div>
-
-                        <div style="clear:both;"></div>
-
-                        <div class="scratch-box">
-                            <div class="scratch-box-title">私について</div>
-                            <div id="status" class="scratch-box-content"></div>
-                        </div>
-
-                        <div class="scratch-box">
-                            <div class="scratch-box-title">私が取り組んでいること</div>
-                            <div id="bio" class="scratch-box-content"></div>
-                        </div>
-
-                    </div>
-
+                <div class="scratch-header">
+                    俺について
                 </div>
 
-                <script>
-                    // ユーザー情報
-                    fetch("/api/user")
-                        .then(res => res.json())
-                        .then(data => {
-                            document.getElementById("icon").src = data.profile.images["90x90"];
-                            document.getElementById("username").innerHTML = "<b>ユーザー名:</b> " + data.username;
-                            document.getElementById("joined").innerHTML = "<b>参加日:</b> " + data.history.joined;
-                            document.getElementById("country").innerHTML = "<b>国:</b> " + data.profile.country;
-                            document.getElementById("status").textContent = data.profile.status;
-                            document.getElementById("bio").textContent = data.profile.bio;
-                        });
-                </script>
-            </div>
-            <div class="main-left-grid">
-                <div class="scratch-container">
+                <div class="scratch-content">
 
-                    <div class="scratch-header">
-                        俺について
-                    </div>
-
-                    <div class="scratch-content">
-
-                        <img src="./img/my_icon.png" alt="icon" id="main-left-grid-myicon">
-                        <ul id="main-left-grid-syousai">
-                            <li>年齢: 13歳</li>
-                            <li>性別: 男性</li>
-                            <li>主な活動場所: Scratch・Discord・YouTube</li>
-                            <li>スク友</li>
-                            <ul>
-                                <li>
-                                    <a href="https://scratch.mit.edu/users/windows11at/">windows11at</a>
-                                </li>
-                                <li>
-                                    <a href="https://scratch.mit.edu/users/_nigiri/">_nigiri</a>
-                                </li>
-                                <li>
-                                    <a href="https://scratch.mit.edu/users/windows11atPro/">Windowstukareta</a>
-                                </li>
-                            </ul>
+                    <img src="./img/my_icon.png" alt="icon" id="main-left-grid-myicon">
+                    <ul id="main-left-grid-syousai">
+                        <li>年齢: 13歳</li>
+                        <li>性別: 男性</li>
+                        <li>主な活動場所: Scratch・Discord・YouTube</li>
+                        <li>スク友</li>
+                        <ul>
+                            <li>
+                                <a href="https://scratch.mit.edu/users/windows11at/">windows11at</a>
+                            </li>
+                            <li>
+                                <a href="https://scratch.mit.edu/users/_nigiri/">_nigiri</a>
+                            </li>
+                            <li>
+                                <a href="https://scratch.mit.edu/users/windows11atPro/">Windowstukareta</a>
+                            </li>
                         </ul>
-
-                    </div>
+                    </ul>
 
                 </div>
-            </div>
-            <div class="main-left-grid">
-                <div class="scratch-container">
-                    <div class="scratch-header">
-                        Link
-                    </div>
 
-                    <div class="scratch-content">
-                        <div class="mail">
-                            <img src="./img/mail_icon.png" class="mail-image">
-                            <a href="mailto:wdq.ewfjiow8402@gmail.com">
-                                <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
-                            </a>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="./img/escargot_icon.png" class="mail-image">
-                            <p class="mail-text">himazin0239@escargot.chat</p>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="./img/scratch_icon.png" class="mail-image">
-                            <a href="https://scratch.mit.edu/users/himazin0239/">
-                                <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
-                            </a>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="./img/youtube_icon.png" class="mail-image">
-                            <a href="https://www.youtube.com/@himazin0239">
-                                <p class="mail-text">https://www.youtube.com/@himazin0239</p>
-                            </a>
-                        </div>
-                        <br>
-                        <div class="mail">
-                            <img src="./img/bluesky_icon.png" class="mail-image">
-                            <a href="https://bsky.app/profile/himazin0239.bsky.social">
-                                <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
-                            </a>
-                        </div>
-                    </div>
+            </div>
+        </div>
+        <div class="main-left-grid">
+            <div class="scratch-container">
+                <div class="scratch-header">
+                    Link
                 </div>
-            </div>
-            <div class="main-left-grid">
-                <div class="scratch-container">
-                    <div class="scratch-header">
-                        広告
-                    </div>
 
-                    <div class="scratch-content">
-                        <a href="https://miiverse.projectrose.cafe/">
-                            <img src="./img/Miiverse1.png" width="200">
+                <div class="scratch-content">
+                    <div class="mail">
+                        <img src="./img/mail_icon.png" class="mail-image">
+                        <a href="mailto:wdq.ewfjiow8402@gmail.com">
+                            <p class="mail-text">wdq.ewfjiow8402@gmail.com</p>
                         </a>
-                        <a href="https://www.firefox.com/ja/">
-                            <img src="./img/spreadfirefox.png" width="200">
+                    </div>
+                    <br>
+                    <div class="mail">
+                        <img src="./img/escargot_icon.png" class="mail-image">
+                        <p class="mail-text">himazin0239@escargot.chat</p>
+                    </div>
+                    <br>
+                    <div class="mail">
+                        <img src="./img/scratch_icon.png" class="mail-image">
+                        <a href="https://scratch.mit.edu/users/himazin0239/">
+                            <p class="mail-text">https://scratch.mit.edu/users/himazin0239/</p>
                         </a>
-                        <img src="./img/msnexp.gif" width="150">
+                    </div>
+                    <br>
+                    <div class="mail">
+                        <img src="./img/youtube_icon.png" class="mail-image">
+                        <a href="https://www.youtube.com/@himazin0239">
+                            <p class="mail-text">https://www.youtube.com/@himazin0239</p>
+                        </a>
+                    </div>
+                    <br>
+                    <div class="mail">
+                        <img src="./img/bluesky_icon.png" class="mail-image">
+                        <a href="https://bsky.app/profile/himazin0239.bsky.social">
+                            <p class="mail-text">https://bsky.app/profile/himazin0239.bsky.social</p>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="main-right">
-            <div class="welcome-box">
-                <div class="welcome-text">
-                    <h1>himazin0239のブログへようこそ!</h1>
-                    <h2>色々とアップしていく、そんな場所です。</h2>
+        <div class="main-left-grid">
+            <div class="scratch-container">
+                <div class="scratch-header">
+                    広告
                 </div>
-                <img src="./img/my_fox.png" id="myfox" alt="my_fox">
-            </div>
-            <div class="news-area">
-                <p>最近の記事</p>
-                <div class="news">
-                    <a href="./blog/WiiU-revival.html">
-                        <img src="./img/../img/Picture/WiiU/DSC_0992.JPG" width="100">
-                        <p>WiiUの機能を現代でも復活させる方法を伝授!
-                            <br>Miiverseも動くように!
-                        </p>
+
+                <div class="scratch-content">
+                    <a href="https://miiverse.projectrose.cafe/">
+                        <img src="./img/Miiverse1.png" width="200">
                     </a>
+                    <a href="https://www.firefox.com/ja/">
+                        <img src="./img/spreadfirefox.png" width="200">
+                    </a>
+                    <img src="./img/msnexp.gif" width="150">
                 </div>
-                <div class="news">
+            </div>
+        </div>
+    </div>
+    <div id="main-right">
+        <div class="welcome-box">
+            <div class="welcome-text">
+                <h1>himazin0239のブログへようこそ!</h1>
+                <h2>色々とアップしていく、そんな場所です。</h2>
+            </div>
+            <img src="./img/my_fox.png" id="myfox" alt="my_fox">
+        </div>
+        <div class="news-area">
+            <p>最近の記事</p>
+            <div class="news">
+                <a href="./blog/WiiU-revival.html">
+                    <img src="./img/../img/Picture/WiiU/DSC_0992.JPG" width="100">
+                    <p>WiiUの機能を現代でも復活させる方法を伝授!
+                        <br>Miiverseも動くように!
+                    </p>
+                </a>
+            </div>
+            <div class="news">
+                <a href="./blog/windows-live-messenger-re.html">
+                    <img src="./img/screenshot/bandicam 2026-02-13 15-09-48-402.jpg" width="100">
+                    <p>MSN・Windows Live Messengerが現代に復活!?escargotというものを入れてみた!</p>
+                </a>
+            </div>
+        </div>
+        <a href="https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg">
+            <button>
+                <span class="button-left"></span>
+                <span class="button-center">
+                    Youtubeへ行く
+                </span>
+                <span class="button-right"></span>
+            </button>
+        </a>
+        <h1>注目の記事</h1>
+        <table border="0" cellspacing="5" cellpadding="0" style="justify-content: space-between;">
+            <tr>
+                <td width="150" height="100" class="kiji">
+                    <a href="https://scratch.mit.edu/users/himazin0239_sub/">
+                        <img src="./img/Vista.jpg" width="100">
+                        <p>Scratchのサブ垢作りました！気になる人はこの記事をクリック！</p>
+                    </a>
+                </td>
+                <td width="150" height="100" class="kiji">
+                    <a href="./blog/windows-11-start-menu.html">
+                        <img src="./img/screenshot/Windows%2011%20Startmenu.jpg" width="100">
+                        <p>Windows 11のスタートメニューが
+                            新しくなった!?
+                            スマートフォンの連携簡単に!</p>
+                    </a>
+                </td>
+                <td width="150" height="100" class="kiji">
+                    <a href="./blog/Windows10to7.html">
+                        <img src="./img/screenshot/キャプチャ1.jpg" width="100">
+                        <p>Windows 10をWindows7風にしてみた!
+                            ほんとにWindows 10だからね!</p>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td width="150" height="100" class="kiji">
+                    <a href="./blog/old-icons.html">
+                        <img src="./img/No-Image.jpg" width="100">
+                        <p>昔のブラウザのアイコンのダウンロードはここ!
+                            あの悩みが解決!?</p>
+                    </a>
+                </td>
+                <td width="150" height="100" class="kiji">
                     <a href="./blog/windows-live-messenger-re.html">
                         <img src="./img/screenshot/bandicam 2026-02-13 15-09-48-402.jpg" width="100">
                         <p>MSN・Windows Live Messengerが現代に復活!?escargotというものを入れてみた!</p>
                     </a>
-                </div>
-            </div>
-            <a href="https://www.youtube.com/channel/UC5ceDT-WlzXACu-JGepzAUg">
-                <button>
-                    <span class="button-left"></span>
-                    <span class="button-center">
-                        Youtubeへ行く
-                    </span>
-                    <span class="button-right"></span>
-                </button>
+                </td>
+                <td width="150" height="100" class="kiji">
+                    <a href="./blog/WiiU-revival.html">
+                        <img src="./img/../img/Picture/WiiU/DSC_0992.JPG" width="100">
+                        <p>WiiUの機能を現代でも復活させる方法を伝授!
+                            Miiverseも動くように!</p>
+                    </a>
+                </td>
+            </tr>
+            <a href="https://himazin0239-blog.vercel.app/test.html">
+                Wii Uなどの古いブラウザ・ゲーム機をお使いの方はこちらへ
             </a>
-            <h1>注目の記事</h1>
-            <table border="0" cellspacing="5" cellpadding="0" style="justify-content: space-between;">
-                <tr>
-                    <td width="150" height="100" class="kiji">
-                        <a href="https://scratch.mit.edu/users/himazin0239_sub/">
-                            <img src="./img/Vista.jpg" width="100">
-                            <p>Scratchのサブ垢作りました！気になる人はこの記事をクリック！</p>
-                        </a>
-                    </td>
-                    <td width="150" height="100" class="kiji">
-                        <a href="./blog/windows-11-start-menu.html">
-                            <img src="./img/screenshot/Windows%2011%20Startmenu.jpg" width="100">
-                            <p>Windows 11のスタートメニューが
-                                新しくなった!?
-                                スマートフォンの連携簡単に!</p>
-                        </a>
-                    </td>
-                    <td width="150" height="100" class="kiji">
-                        <a href="./blog/Windows10to7.html">
-                            <img src="./img/screenshot/キャプチャ1.jpg" width="100">
-                            <p>Windows 10をWindows7風にしてみた!
-                                ほんとにWindows 10だからね!</p>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="150" height="100" class="kiji">
-                        <a href="./blog/old-icons.html">
-                            <img src="./img/No-Image.jpg" width="100">
-                            <p>昔のブラウザのアイコンのダウンロードはここ!
-                                あの悩みが解決!?</p>
-                        </a>
-                    </td>
-                    <td width="150" height="100" class="kiji">
-                        <a href="./blog/windows-live-messenger-re.html">
-                            <img src="./img/screenshot/bandicam 2026-02-13 15-09-48-402.jpg" width="100">
-                            <p>MSN・Windows Live Messengerが現代に復活!?escargotというものを入れてみた!</p>
-                        </a>
-                    </td>
-                    <td width="150" height="100" class="kiji">
-                        <a href="./blog/WiiU-revival.html">
-                            <img src="./img/../img/Picture/WiiU/DSC_0992.JPG" width="100">
-                            <p>WiiUの機能を現代でも復活させる方法を伝授!
-                                Miiverseも動くように!</p>
-                        </a>
-                    </td>
-                </tr>
-                <a href="https://himazin0239-blog.vercel.app/test.html">
-                    Wii Uなどの古いブラウザ・ゲーム機をお使いの方はこちらへ
-                </a>
-            </table>
-            <h1>YouTubeの動画</h1>
-            <iframe width="318" height="258" src="./youtube.html?v=DsGurgv4SoI.mp4" allowfullscreen></iframe>
-            <iframe width="318" height="258" src="./youtube.html?v=FEHB1mJOyJo.mp4" allowfullscreen></iframe><br>
-            <iframe width="318" height="258" src="./youtube.html?v=NyDU5CZZV04.mp4" allowfullscreen></iframe>
-            <iframe width="318" height="258" src="./youtube.html?v=5IViiemNEl4.mp4" allowfullscreen></iframe><br>
-            <iframe width="318" height="258" src="./youtube.html?v=Pw_JWq3tV4E.mp4" allowfullscreen></iframe>
-            <iframe width="318" height="258" src="./youtube.html?v=rEQKS7n_TQw.mp4" allowfullscreen></iframe><br>
-            <h1>コメント欄</h1>
-            <style>
-                #comments {
-                    background-image: url(../img/notebook_textura_by_kikarr_d26gui8.jpg);
-                    background-repeat: repeat-y;
-                    padding-left: 30px;
-                }
+        </table>
+        <h1>YouTubeの動画</h1>
+        <iframe width="318" height="258" src="./youtube.html?v=DsGurgv4SoI.mp4" allowfullscreen></iframe>
+        <iframe width="318" height="258" src="./youtube.html?v=FEHB1mJOyJo.mp4" allowfullscreen></iframe><br>
+        <iframe width="318" height="258" src="./youtube.html?v=NyDU5CZZV04.mp4" allowfullscreen></iframe>
+        <iframe width="318" height="258" src="./youtube.html?v=5IViiemNEl4.mp4" allowfullscreen></iframe><br>
+        <iframe width="318" height="258" src="./youtube.html?v=Pw_JWq3tV4E.mp4" allowfullscreen></iframe>
+        <iframe width="318" height="258" src="./youtube.html?v=rEQKS7n_TQw.mp4" allowfullscreen></iframe><br>
+        <h1>コメント欄</h1>
+        <style>
+            #comments {
+                background-image: url(../img/notebook_textura_by_kikarr_d26gui8.jpg);
+                background-repeat: repeat-y;
+                padding-left: 30px;
+            }
 
-                #comments a {
-                    color: rgb(47, 0, 255);
-                }
+            #comments a {
+                color: rgb(47, 0, 255);
+            }
 
-                #comments pre {
-                    line-height: 1.6;
-                    white-space: pre-wrap;
-                }
-            </style>
-            <form
-                action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
-                target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
-                <p><input name="entry.1039723739" placeholder="名前" value="名無しの誰かさん" required></p>
-                <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
-                <p><textarea name="entry.1204045444" placeholder="コメント" rows="2" cols="40" maxlength="400" id="wcheck"
-                        required></textarea></p>
-                <input type="submit" id="submitbutton" value="送信">
-            </form>
-            <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
-                style=display:none></iframe>
+            #comments pre {
+                line-height: 1.6;
+                white-space: pre-wrap;
+            }
+        </style>
+        <form
+            action="https://docs.google.com/forms/d/e/1FAIpQLScFWrJQ2ZkK_RMYjXfzGqqdSS9o4v43BwEfNzb10BbHs8H0Lg/formResponse"
+            target="hidden_iframe" method="post" onsubmit="return test(this.wcheck.value)">
+            <p><input name="entry.1039723739" placeholder="名前" value="名無しの誰かさん" required></p>
+            <p><input name="entry.1760607548" placeholder="メールアドレス" type="email"></p>
+            <p><textarea name="entry.1204045444" placeholder="コメント" rows="2" cols="40" maxlength="400" id="wcheck"
+                    required></textarea></p>
+            <input type="submit" id="submitbutton" value="送信">
+        </form>
+        <iframe onload='if(submitted){window.location="";}' id=hidden_iframe name=hidden_iframe
+            style=display:none></iframe>
 
-            <script type="text/javascript">
-                var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
-                var regex = new RegExp(NGComments.join("|"));
-                function test(wcheck) {
-                    if (wcheck.match(regex) != null) {
-                        alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
-                        return false;
-                    }
-                    document.getElementById("submitbutton").disabled = true;
-                    textareas = document.getElementsByTagName('textarea');
-                    inputs = document.getElementsByTagName('input');
-                    return submitted = !0;
+        <script type="text/javascript">
+            var NGComments = ["死ね", "バカ", ".exe", ".bat", "クソ", "アホ", "殺す", "氏ね", "馬鹿", "糞", "うんこ", "ウンコ", "殺せ", "消えろ", "消えなさい", "しね", "ばか", "あほ", "くそ", "ころす", "コロス", "コロせ", "死にたい", "死にます", "氏ねよ"];
+            var regex = new RegExp(NGComments.join("|"));
+            function test(wcheck) {
+                if (wcheck.match(regex) != null) {
+                    alert("ERROR: コメントにNGワードが含まれています! NGワード絶対ダメ! F██K YOU!←は?");
+                    return false;
                 }
-            </script>
-            <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-            <div id="comments"></div>
-            <script>
-                d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", function (error, data) {
-                    data.reverse();
-                    function replaceText(text) {
-                        return text
-                            .replace(/</g, "&lt;")
-                    }
-                    var text = "";
-                    for (var i = 0; i < data.length; i++) {
-                        var name = replaceText(data[i].Name);
-                        var mail = replaceText(data[i].Mail);
-                        var timestamp = replaceText(data[i].Timestamp);
-                        var comments = replaceText(data[i].Comments);
-                        text += i + 1 + "<a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
-                    }
-                    d3.select("#comments").html(text);
-                });
-            </script>
-        </div>
+                document.getElementById("submitbutton").disabled = true;
+                textareas = document.getElementsByTagName('textarea');
+                inputs = document.getElementsByTagName('input');
+                return submitted = !0;
+            }
+        </script>
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <div id="comments"></div>
+        <script>
+            d3.csv("https://docs.google.com/spreadsheets/d/12pBts2mN9p2FgN_bXDBH4VtU6uGQEtGmPAmGnRLB3Zw/export?format=csv&range=A3:D", function (error, data) {
+                data.reverse();
+                function replaceText(text) {
+                    return text
+                        .replace(/</g, "&lt;")
+                }
+                var text = "";
+                for (var i = 0; i < data.length; i++) {
+                    var name = replaceText(data[i].Name);
+                    var mail = replaceText(data[i].Mail);
+                    var timestamp = replaceText(data[i].Timestamp);
+                    var comments = replaceText(data[i].Comments);
+                    text += i + 1 + "<a href=\"mailto:" + mail + "\">" + name + "</a> " + "の発言" + "(" + timestamp + ")" + "<pre>" + comments + "</pre>";
+                }
+                d3.select("#comments").html(text);
+            });
+        </script>
+    </div>
     </div>
 </body>
 
